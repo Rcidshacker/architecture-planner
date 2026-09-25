@@ -1,0 +1,24 @@
+# Local Claude Code tooling config (personal, not project source)
+.claude/
+
+# External reference repo (CC BY-NC-ND, not our IP — kept locally for reference only)
+system-design-101-main/
+
+# Local code-graph index cache (graft)
+graft/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Env
+.env
+.env.local
