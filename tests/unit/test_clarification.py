@@ -62,11 +62,16 @@ def test_priority_is_uncertainty_times_static_impact_only() -> None:
     }  # no hidden factor
 
 
-def test_highest_impact_field_is_asked_first_and_alone() -> None:
-    outcome = run_clarification(blank(), ScriptedUser({"capabilities.file_uploads": True}), never_infeasible)
+def test_highest_impact_fields_are_asked_first_and_together_when_tied() -> None:
+    """capabilities.file_uploads and capabilities.data_persistence are both impact 4 and always relevant (a tie)."""
+    outcome = run_clarification(
+        blank(),
+        ScriptedUser({"capabilities.file_uploads": True, "capabilities.data_persistence": False}),
+        never_infeasible,
+    )
     first_round = outcome.rounds[0]
-    assert [q.field for q in first_round] == ["capabilities.file_uploads"]
-    assert first_round[0].priority == 4
+    assert [q.field for q in first_round] == ["capabilities.file_uploads", "capabilities.data_persistence"]
+    assert all(q.priority == 4 for q in first_round)
 
 
 def test_fields_without_an_implemented_decision_are_never_asked() -> None:
@@ -79,6 +84,7 @@ def test_fields_without_an_implemented_decision_are_never_asked() -> None:
 def test_full_answer_session_resolves_blocking_unknowns_and_updates_model_as_user() -> None:
     answers = {
         "capabilities.file_uploads": True,
+        "capabilities.data_persistence": False,
         "storage.access_mode": "private",
         "storage.minimum_capacity_gb": 20,
         "constraints.monthly_budget": 500,
@@ -87,7 +93,7 @@ def test_full_answer_session_resolves_blocking_unknowns_and_updates_model_as_use
     outcome = run_clarification(blank(), ScriptedUser(answers), never_infeasible)
 
     assert [[q.field for q in r] for r in outcome.rounds] == [
-        ["capabilities.file_uploads"],
+        ["capabilities.file_uploads", "capabilities.data_persistence"],  # tied at impact 4
         ["storage.access_mode", "storage.minimum_capacity_gb", "constraints.monthly_budget"],  # ties, row order
         ["constraints.currency"],  # only relevant once a non-zero budget is known
     ]
@@ -99,6 +105,7 @@ def test_full_answer_session_resolves_blocking_unknowns_and_updates_model_as_use
 def test_non_blocking_unknowns_do_not_trigger_rounds_or_prevent_output() -> None:
     answers = {
         "capabilities.file_uploads": True,
+        "capabilities.data_persistence": False,
         "storage.access_mode": "private",
         "storage.minimum_capacity_gb": 20,
         "constraints.monthly_budget": 0,

@@ -76,6 +76,28 @@ A concrete Redis requirement should not be emitted until the schema contains an 
 
 The rule should then specify the coordination capabilities required rather than hard-coding a provider.
 
+## Example rule: persistent data (V1.1, spec gap G-18)
+
+```yaml
+id: DATABASE-001
+category: HARD_REQUIREMENT
+when:
+  capabilities.data_persistence: true
+then:
+  component: relational_database
+  status: REQUIRED
+  spec:
+    minimum_capacity: UNKNOWN
+  provenance:
+    component: RULE
+    spec: UNKNOWN
+conflicts: []
+blocking_unknowns:
+  - minimum_capacity
+```
+
+Added from external walkthrough evidence (`WALKTHROUGH.md` e2/e3/e4), per this file's own V1-limitation rule: a rule is added only after an actual walkthrough failure, not to look comprehensive. Deliberately minimal, mirroring `STORAGE-001`'s shape: one condition, one component, provider-checkable spec attributes left `UNKNOWN` unless stated. It does not add an engine-type distinction (relational vs document) or any other attribute `STORAGE-001` has no equivalent for — `access_mode` and `delivery` describe file-access semantics with no faithful database analog, so V1.1 does not invent one.
+
 ## Component-spec requirement
 
 A component output is incomplete if it contains only:
@@ -143,6 +165,16 @@ The V1 schema contains no field that expresses an explicit cache requirement, an
 1. Collect every rule output per component. Iteration order never matters.
 2. If `HARD_REQUIREMENT` outputs for one component disagree (e.g. one `REQUIRED`, one `NOT_REQUIRED`), that is an architecture conflict: architecture feasibility is `INFEASIBLE`, the component is `UNDETERMINED`, and both outputs are reported. Precedence is not applied to it.
 3. Only when there is no conflict is precedence applied: the output of the strongest category present wins (`HARD_REQUIREMENT` > `PREFERENCE` > `DEFAULT_AVOID`). A `DEFAULT_AVOID` that loses is recorded in the decision's explanation, not silently dropped.
+
+### G-18: `DATABASE-001` spec population
+
+Same mechanics as G-4/G-5, applied to `capabilities.data_persistence` / `relational_database`. The trigger's three outcomes (`REQUIRED`, `NOT_REQUIRED`, `UNDETERMINED` + blocking trigger field) and provenance propagation are identical to G-4. The spec has one attribute, copied from a requirement field, never derived from the boolean:
+
+| Attribute | Kind | Domain / unit | Requirement field |
+|---|---|---|---|
+| `minimum_capacity` | minimum quantity | GB | `database.minimum_capacity_gb` |
+
+Provider matching reuses the existing minimum-quantity mechanism (`MIN_QUANTITY_LIMITS`), compared against a `relational_database.max_capacity_gb` provider fact, the same way `STORAGE-001`'s `minimum_capacity` is checked against `object_storage.max_capacity_gb`.
 
 ## V1 limitation
 

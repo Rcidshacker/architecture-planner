@@ -1,0 +1,37 @@
+Description: Database for a server application
+
+I want to start an android project for a module at university and I plan to make an online application that will communicate with a server. The app will have to record the user's log-in details and other information regarding their progress with the app on a database hosted on the server. My idea is to set up a database on my raspberry pi which will act as a web server. The only problem is that I have limited experience with databases and I was wondering what will be the best one to use. I have only used Oracle and it was very tedious to set it up, especially on Linux. From a lot of googling I reached the conclusion that MySQL will be the best choice. SQLite looks good too because it's easy to use, but I heard that it doesn't cope so well with concurrency. What do you guys think? More info: The app will be a project for uni so it won't have huge amounts of data (but I plan to make it available on the store if I receive good feedback) The database will have to work properly when data is requested simultaneously by multiple users this will be a server application can handle crashes
+
+
+application.name                     -                  UNKNOWN   UNKNOWN   
+capabilities.authentication          true               KNOWN     USER        "The app will have to record the user's log-in details"
+capabilities.file_uploads            -                  UNKNOWN   UNKNOWN   
+capabilities.ai_inference            -                  UNKNOWN   UNKNOWN   
+capabilities.realtime                -                  UNKNOWN   UNKNOWN   
+capabilities.payments                -                  UNKNOWN   UNKNOWN   
+capabilities.search                  -                  UNKNOWN   UNKNOWN   
+capabilities.scheduled_jobs          -                  UNKNOWN   UNKNOWN   
+capabilities.notifications           -                  UNKNOWN   UNKNOWN   
+capabilities.data_persistence        true               KNOWN     USER        "record the user's log-in details and other information regarding their progress with the app on a database hosted on the server"
+workload.users                       -                  UNKNOWN   UNKNOWN   
+workload.peak_concurrency            -                  UNKNOWN   UNKNOWN   
+workload.read_write_ratio            -                  UNKNOWN   UNKNOWN   
+workload.latency_target_ms           -                  UNKNOWN   UNKNOWN   
+workload.request_burstiness          -                  UNKNOWN   UNKNOWN   
+operations.ai_request_mode           -                  UNKNOWN   UNKNOWN   
+operations.ai_request_duration       -                  UNKNOWN   UNKNOWN   
+operations.user_waits_for_completion -                  UNKNOWN   UNKNOWN   
+operations.retryable_background_work -                  UNKNOWN   UNKNOWN   
+operations.public_asset_delivery     -                  UNKNOWN   UNKNOWN   
+constraints.monthly_budget           -                  UNKNOWN   UNKNOWN   
+constraints.currency                 -                  UNKNOWN   UNKNOWN   
+constraints.team_size                -                  UNKNOWN   UNKNOWN   
+constraints.provider_lock_in         -                  UNKNOWN   UNKNOWN   
+constraints.region_requirements      -                  UNKNOWN   UNKNOWN   
+storage.access_mode                  -                  UNKNOWN   UNKNOWN   
+storage.delivery                     -                  UNKNOWN   UNKNOWN   
+storage.minimum_capacity_gb          -                  UNKNOWN   UNKNOWN   
+database.minimum_capacity_gb         -                  UNKNOWN   UNKNOWN   
+
+Edit with <field>=<value> (use ? for unknown). 'confirm' to accept, 'quit' to save unconfirmed.
+review> confirmed

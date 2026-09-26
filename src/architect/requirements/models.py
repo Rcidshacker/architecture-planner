@@ -75,6 +75,7 @@ class Capabilities(_Section):
     search: RequirementValue[bool] = RequirementValue()
     scheduled_jobs: RequirementValue[bool] = RequirementValue()
     notifications: RequirementValue[bool] = RequirementValue()
+    data_persistence: RequirementValue[bool] = RequirementValue()
 
 
 class Workload(_Section):
@@ -107,6 +108,12 @@ class Storage(_Section):
     minimum_capacity_gb: RequirementValue[float] = RequirementValue()
 
 
+class Database(_Section):
+    """DATABASE-001 spec attributes (requirements-schema.md G-18), mirroring Storage."""
+
+    minimum_capacity_gb: RequirementValue[float] = RequirementValue()
+
+
 class RequirementModel(_Section):
     """The full requirement model. `confirmed` is set only by human review."""
 
@@ -117,3 +124,4 @@ class RequirementModel(_Section):
     operations: Operations = Operations()
     constraints: Constraints = Constraints()
     storage: Storage = Storage()
+    database: Database = Database()

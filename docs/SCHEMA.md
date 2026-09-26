@@ -50,6 +50,7 @@ capabilities:
   search: boolean | UNKNOWN
   scheduled_jobs: boolean | UNKNOWN
   notifications: boolean | UNKNOWN
+  data_persistence: boolean | UNKNOWN  # V1.1, spec gap G-18 (requirements-schema.md)
 ```
 
 ### Workload

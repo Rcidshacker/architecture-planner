@@ -228,6 +228,17 @@
       {
         "provider": "Supabase",
         "service": "Free",
+        "fact_type": "limitation",
+        "key": "relational_database.max_capacity_gb",
+        "value": 0.5,
+        "source_url": "https://supabase.com/pricing",
+        "retrieved_at": "2026-09-26T00:00:00+05:30",
+        "verified_at": "2026-09-26T00:00:00+05:30",
+        "verification_status": "VERIFIED"
+      },
+      {
+        "provider": "Supabase",
+        "service": "Free",
         "fact_type": "pricing",
         "key": "currency",
         "value": "USD",
@@ -354,6 +365,17 @@
         "source_url": "https://supabase.com/docs/guides/storage/serving/downloads",
         "retrieved_at": "2026-09-25T15:01:00+05:30",
         "verified_at": "2026-09-25T15:01:00+05:30",
+        "verification_status": "VERIFIED"
+      },
+      {
+        "provider": "Supabase",
+        "service": "Pro",
+        "fact_type": "limitation",
+        "key": "relational_database.max_capacity_gb",
+        "value": 8,
+        "source_url": "https://supabase.com/pricing",
+        "retrieved_at": "2026-09-26T00:00:00+05:30",
+        "verified_at": "2026-09-26T00:00:00+05:30",
         "verification_status": "VERIFIED"
       },
       {

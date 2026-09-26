@@ -244,3 +244,38 @@ def test_excluded_offering_is_explained() -> None:
     result, configs = assess(engine(two_gb), reqs, load_seed_bundles())
     assert "Supabase Free" not in {b for c in configs for b in c.bundles}
     assert any("Supabase Free" in e and "VIOLATED" in e and "limit 1" in e for e in result.explanations)
+
+
+# --- DATABASE-001 real-seed feasibility (V1.1, spec gap G-18; walkthrough evidence WALKTHROUGH.md e2/e3/e4) --------
+
+DATABASE_UNKNOWN_CAPACITY = required("relational_database", minimum_capacity=UNKNOWN)
+DATABASE_SMALL = required("relational_database", minimum_capacity=0.02)  # e4: "20 MB DB"
+DATABASE_LARGE = required("relational_database", minimum_capacity=10)
+SMALL_STORAGE = required("object_storage", access_mode="private", delivery="signed_url", minimum_capacity=0.5)
+
+
+def test_database_unverified_against_real_seed_when_capacity_unknown() -> None:
+    result, configs = assess(engine(DATABASE_UNKNOWN_CAPACITY), requirements(budget=25), load_seed_bundles())
+    assert result.provider is UNVERIFIED
+    assert {"Supabase Free", "Supabase Pro"} <= {b for c in configs for b in c.bundles}
+
+
+def test_database_satisfied_when_stated_capacity_fits_the_free_tier() -> None:
+    result, configs = assess(engine(DATABASE_SMALL), requirements(budget=25), load_seed_bundles())
+    assert result.provider is FEASIBLE
+    free = next(c for c in configs if c.bundles == ["Supabase Free"])
+    assert free.provider_state is FEASIBLE
+
+
+def test_database_infeasible_when_stated_capacity_exceeds_every_seeded_limit() -> None:
+    result, configs = assess(engine(DATABASE_LARGE), requirements(budget=25), load_seed_bundles())
+    assert result.provider is INFEASIBLE
+    assert configs == []
+
+
+def test_database_and_object_storage_covered_by_one_seeded_supabase_bundle() -> None:
+    """Bundle-awareness (decision-resolution.md G-10) applies to DATABASE-001 too, not just STORAGE-001."""
+    result, configs = assess(engine(DATABASE_SMALL, SMALL_STORAGE), requirements(budget=25), load_seed_bundles())
+    covers = next(c for c in configs if c.bundles == ["Supabase Free"]).covers
+    assert covers == {"relational_database": "Supabase Free", "object_storage": "Supabase Free"}
+    assert result.provider is FEASIBLE

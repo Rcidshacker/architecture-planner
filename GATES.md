@@ -83,3 +83,8 @@ Scope: PRD.md 9-step V1 build, each step's Verify line proven by its own test mo
 
 - [x] G16: /code-review on full diff done, findings fixed
   EVIDENCE: /code-review high on full diff vs c622a6e: 10 findings (CR1-CR10), all reproduced by tests/unit/test_review_fixes.py (12 red) then fixed (125 green); docs updated first (requirements-schema G-3 1a/1b, SCHEMA numeric rule, decision-resolution G-9/G-10)
+
+- [x] G17: V1.1 DATABASE-001 rule built (spec gap G-18), on the user's explicit "build minimal now" decision
+  CHECK: uv run pytest -q && uv run mypy src && uv run ruff check . && uv build
+  EXPECT: pytest "136 passed"; mypy "Success: no issues found"; ruff "All checks passed!"; uv build "Successfully built"
+  EVIDENCE: manual-evidence=v1 (automatic-evidence tooling not reproduced by this fork; each command run directly against the working tree and its output read, not assumed). docs updated first (requirements-schema.md, architecture-rules.md, SCHEMA.md); `capabilities.data_persistence` + `DATABASE-001` mirror `STORAGE-001` minimally (one spec attribute, no engine-type distinction); 2 new provider facts hand-seeded from a fresh fetch of https://supabase.com/pricing (relational_database.max_capacity_gb: 0.5 Free, 8 Pro); 11 new/updated tests (test_rules.py x5, test_feasibility.py x4 against real seed bundles, test_extraction.py x2 grounded in real e4 source text); 6 pre-existing tests updated for the new always-relevant clarification field (documented as intentional in each diff, not silent breakage). Walkthrough e2/e3/e4 rerun end-to-end with the real `claude -p` extractor: WALKTHROUGH.md "V1.1: DATABASE-001 added". See commit for hash.

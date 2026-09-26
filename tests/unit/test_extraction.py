@@ -171,3 +171,39 @@ def test_empty_description_is_rejected_before_calling_the_llm() -> None:
     with pytest.raises(ValueError):
         extract("   ", llm)
     assert llm.prompts == []
+
+
+# --- DATABASE-001 field extraction (V1.1, spec gap G-18) -----------------------------------------------------------
+
+E4_DESCRIPTION = (  # real WALKTHROUGH.md e4 text (walkthrough/e4/description.txt), not synthetic
+    'I am new i WPF but i make wpf application which have sql database server. My Database is only 20 mb because '
+    'it\'s on "appharbor". In this app every user can upload image for avatar but i can\'t save this pictures for '
+    "every user because my db is too small."
+)
+
+
+def test_persistence_signal_is_extracted_as_known_user() -> None:
+    entry = {
+        "value": True,
+        "state": "KNOWN",
+        "provenance": "USER",
+        "source_text": "i make wpf application which have sql database server",
+    }
+    result = extract(E4_DESCRIPTION, fake_llm({"capabilities.data_persistence": entry}))
+    assert result.issues == []
+    rv = get_value(result.requirements, "capabilities.data_persistence")
+    assert (rv.value, rv.state, rv.provenance) == (True, RequirementState.KNOWN, Provenance.USER)
+
+
+def test_a_unit_conversion_from_the_source_text_is_not_invented() -> None:
+    """"20 mb" in the source cannot become a GB number the quote does not literally contain (G-3 rule 1b)."""
+    entry = {
+        "value": 0.02,
+        "state": "KNOWN",
+        "provenance": "USER",
+        "source_text": "My Database is only 20 mb",
+    }
+    result = extract(E4_DESCRIPTION, fake_llm({"database.minimum_capacity_gb": entry}))
+    rv = get_value(result.requirements, "database.minimum_capacity_gb")
+    assert (rv.value, rv.state, rv.provenance) == (None, RequirementState.UNKNOWN, Provenance.UNKNOWN)
+    assert len(result.issues) == 1 and "does not appear in its source text" in result.issues[0]

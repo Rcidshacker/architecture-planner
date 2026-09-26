@@ -133,6 +133,46 @@ def test_rules_refuse_an_unconfirmed_extraction_result() -> None:
 
 def test_seeded_rules_match_architecture_rules_md() -> None:
     by_id = {r.id: r for r in SEEDED_RULES}
-    assert set(by_id) == {"STORAGE-001", "CACHE-DEFAULT-001"}
+    assert set(by_id) == {"STORAGE-001", "CACHE-DEFAULT-001", "DATABASE-001"}
     assert by_id["STORAGE-001"].category is RuleCategory.HARD_REQUIREMENT
     assert by_id["CACHE-DEFAULT-001"].category is RuleCategory.DEFAULT_AVOID
+    assert by_id["DATABASE-001"].category is RuleCategory.HARD_REQUIREMENT
+
+
+# --- DATABASE-001 (V1.1, spec gap G-18; walkthrough evidence: WALKTHROUGH.md e2/e3/e4) -----------------------------
+
+
+def test_persistent_data_true_requires_relational_database_with_unknown_spec() -> None:
+    db = component(evaluate(model(capabilities__data_persistence=True)), "relational_database")
+    assert db.status is ComponentStatus.REQUIRED
+    assert db.spec == {"minimum_capacity": UNKNOWN}
+    assert db.blocking_unknowns == ["minimum_capacity"]
+    assert db.rules_triggered == ["DATABASE-001"]
+    assert Provenance.USER in db.provenance and Provenance.RULE in db.provenance
+
+
+def test_user_stated_database_capacity_flows_into_the_spec_with_user_provenance() -> None:
+    db = component(
+        evaluate(model(capabilities__data_persistence=True, database__minimum_capacity_gb=0.02)), "relational_database"
+    )
+    assert db.spec == {"minimum_capacity": 0.02}
+    assert db.blocking_unknowns == []
+
+
+def test_persistent_data_false_means_relational_database_not_required() -> None:
+    db = component(evaluate(model(capabilities__data_persistence=False)), "relational_database")
+    assert db.status is ComponentStatus.NOT_REQUIRED
+    assert db.provenance == [Provenance.USER, Provenance.RULE]
+
+
+def test_unknown_persistent_data_leaves_relational_database_undetermined() -> None:
+    db = component(evaluate(model()), "relational_database")
+    assert db.status is ComponentStatus.UNDETERMINED
+    assert db.blocking_unknowns == ["capabilities.data_persistence"]
+    assert Provenance.UNKNOWN in db.provenance
+
+
+def test_database_rule_does_not_invent_an_engine_type_attribute() -> None:
+    """DATABASE-001 mirrors STORAGE-001 minimally: no access_mode/delivery-equivalent attribute exists for it."""
+    db = component(evaluate(model(capabilities__data_persistence=True)), "relational_database")
+    assert set(db.spec) == {"minimum_capacity"}

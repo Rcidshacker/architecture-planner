@@ -1,0 +1,419 @@
+{
+  "requirements": {
+    "confirmed": true,
+    "application": {
+      "name": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      },
+      "description": "Database for a server application\n\nI want to start an android project for a module at university and I plan to make an online application that will communicate with a server. The app will have to record the user's log-in details and other information regarding their progress with the app on a database hosted on the server. My idea is to set up a database on my raspberry pi which will act as a web server. The only problem is that I have limited experience with databases and I was wondering what will be the best one to use. I have only used Oracle and it was very tedious to set it up, especially on Linux. From a lot of googling I reached the conclusion that MySQL will be the best choice. SQLite looks good too because it's easy to use, but I heard that it doesn't cope so well with concurrency. What do you guys think? More info: The app will be a project for uni so it won't have huge amounts of data (but I plan to make it available on the store if I receive good feedback) The database will have to work properly when data is requested simultaneously by multiple users this will be a server application can handle crashes\n"
+    },
+    "capabilities": {
+      "authentication": {
+        "value": true,
+        "state": "KNOWN",
+        "provenance": "USER",
+        "confidence": null,
+        "source_text": "The app will have to record the user's log-in details"
+      },
+      "file_uploads": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      },
+      "ai_inference": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      },
+      "realtime": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      },
+      "payments": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      },
+      "search": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      },
+      "scheduled_jobs": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      },
+      "notifications": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      },
+      "data_persistence": {
+        "value": true,
+        "state": "KNOWN",
+        "provenance": "USER",
+        "confidence": null,
+        "source_text": "record the user's log-in details and other information regarding their progress with the app on a database hosted on the server"
+      }
+    },
+    "workload": {
+      "users": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      },
+      "peak_concurrency": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      },
+      "read_write_ratio": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      },
+      "latency_target_ms": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      },
+      "request_burstiness": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      }
+    },
+    "operations": {
+      "ai_request_mode": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      },
+      "ai_request_duration": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      },
+      "user_waits_for_completion": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      },
+      "retryable_background_work": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      },
+      "public_asset_delivery": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      }
+    },
+    "constraints": {
+      "monthly_budget": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      },
+      "currency": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      },
+      "team_size": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      },
+      "provider_lock_in": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      },
+      "region_requirements": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      }
+    },
+    "storage": {
+      "access_mode": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      },
+      "delivery": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      },
+      "minimum_capacity_gb": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      }
+    },
+    "database": {
+      "minimum_capacity_gb": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      }
+    }
+  },
+  "architecture": {
+    "components": [
+      {
+        "component": "cache",
+        "status": "NOT_REQUIRED",
+        "spec": {},
+        "provenance": [
+          "RULE"
+        ],
+        "rules_triggered": [
+          "CACHE-DEFAULT-001"
+        ],
+        "blocking_unknowns": []
+      },
+      {
+        "component": "object_storage",
+        "status": "UNDETERMINED",
+        "spec": {
+          "access_mode": "UNKNOWN",
+          "delivery": "UNKNOWN",
+          "minimum_capacity": "UNKNOWN"
+        },
+        "provenance": [
+          "UNKNOWN",
+          "RULE"
+        ],
+        "rules_triggered": [
+          "STORAGE-001"
+        ],
+        "blocking_unknowns": [
+          "capabilities.file_uploads"
+        ]
+      },
+      {
+        "component": "relational_database",
+        "status": "REQUIRED",
+        "spec": {
+          "minimum_capacity": "UNKNOWN"
+        },
+        "provenance": [
+          "USER",
+          "RULE",
+          "UNKNOWN"
+        ],
+        "rules_triggered": [
+          "DATABASE-001"
+        ],
+        "blocking_unknowns": [
+          "minimum_capacity"
+        ]
+      }
+    ],
+    "provider_candidates": [
+      {
+        "bundles": [
+          "Supabase Free"
+        ],
+        "covers": {
+          "relational_database": "Supabase Free"
+        },
+        "provider_state": "UNVERIFIED",
+        "budget_state": "UNVERIFIED",
+        "fixed_monthly": 0.0,
+        "currency": "USD",
+        "explanations": [
+          "monthly budget is unknown"
+        ]
+      },
+      {
+        "bundles": [
+          "Supabase Pro"
+        ],
+        "covers": {
+          "relational_database": "Supabase Pro"
+        },
+        "provider_state": "UNVERIFIED",
+        "budget_state": "UNVERIFIED",
+        "fixed_monthly": 25.0,
+        "currency": "USD",
+        "explanations": [
+          "monthly budget is unknown"
+        ]
+      }
+    ],
+    "feasibility": {
+      "architecture": "FEASIBLE",
+      "provider": "UNVERIFIED",
+      "budget": "UNVERIFIED",
+      "compatibility": "DEFERRED",
+      "explanations": [
+        "provider: relational_database: seeded offerings lack the verified facts needed to confirm the spec {'minimum_capacity': 'UNKNOWN'}",
+        "budget: no configuration can be verified within budget"
+      ],
+      "conflicts": [],
+      "missing_evidence": []
+    },
+    "decisions": [
+      {
+        "subject": "cache",
+        "outcome": "NOT_REQUIRED",
+        "provenance": [
+          "RULE"
+        ],
+        "references": [
+          "CACHE-DEFAULT-001"
+        ],
+        "explanation": "NOT_REQUIRED per CACHE-DEFAULT-001"
+      },
+      {
+        "subject": "object_storage",
+        "outcome": "UNDETERMINED",
+        "provenance": [
+          "UNKNOWN",
+          "RULE"
+        ],
+        "references": [
+          "STORAGE-001"
+        ],
+        "explanation": "UNDETERMINED per STORAGE-001; blocked by capabilities.file_uploads"
+      },
+      {
+        "subject": "relational_database",
+        "outcome": "REQUIRED",
+        "provenance": [
+          "USER",
+          "RULE",
+          "UNKNOWN"
+        ],
+        "references": [
+          "DATABASE-001"
+        ],
+        "explanation": "REQUIRED per DATABASE-001; blocked by minimum_capacity"
+      },
+      {
+        "subject": "feasibility.architecture",
+        "outcome": "FEASIBLE",
+        "provenance": [
+          "RULE"
+        ],
+        "references": [
+          "architecture-rules.md G-7"
+        ],
+        "explanation": "no rule conflicts"
+      },
+      {
+        "subject": "feasibility.provider",
+        "outcome": "UNVERIFIED",
+        "provenance": [
+          "PROVIDER_FACT"
+        ],
+        "references": [
+          "seeded provider facts"
+        ],
+        "explanation": "provider: relational_database: seeded offerings lack the verified facts needed to confirm the spec {'minimum_capacity': 'UNKNOWN'}"
+      },
+      {
+        "subject": "feasibility.budget",
+        "outcome": "UNVERIFIED",
+        "provenance": [
+          "UNKNOWN",
+          "PROVIDER_FACT"
+        ],
+        "references": [
+          "constraints.monthly_budget",
+          "constraints.currency",
+          "seeded pricing facts"
+        ],
+        "explanation": "budget: no configuration can be verified within budget"
+      },
+      {
+        "subject": "feasibility.compatibility",
+        "outcome": "DEFERRED",
+        "provenance": [
+          "UNKNOWN"
+        ],
+        "references": [
+          "decision-resolution.md: compatibility deferred in V1"
+        ],
+        "explanation": "cross-provider compatibility is not verified in V1"
+      }
+    ],
+    "unresolved_items": [
+      "capabilities.authentication=true: no V1 architecture rule; infrastructure for it is not determined by this tool",
+      "object_storage: UNDETERMINED (blocked by capabilities.file_uploads)",
+      "relational_database.minimum_capacity: UNKNOWN",
+      "provider feasibility: UNVERIFIED",
+      "budget feasibility: UNVERIFIED",
+      "compatibility: DEFERRED (cross-provider integration is not verified in V1)"
+    ],
+    "avoided_items": [
+      "cache"
+    ],
+    "scaling_triggers": []
+  },
+  "clarification_rounds": 2,
+  "clarification_stop": "blocking_unknowns_already_asked"
+}

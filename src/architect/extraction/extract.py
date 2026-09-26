@@ -62,6 +62,7 @@ _FIELD_TYPES = {
     "storage.access_mode": "private | public (who may read uploaded files)",
     "storage.delivery": "signed_url | direct (how files are served)",
     "storage.minimum_capacity_gb": "number (GB of file storage needed)",
+    "database.minimum_capacity_gb": "number (GB of database storage needed)",
 }
 
 

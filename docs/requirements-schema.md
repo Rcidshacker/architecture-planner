@@ -33,6 +33,7 @@ The initial schema is deliberately small. A field should be added only when it g
 | `capabilities.search` | optional | unknown | search service decision |
 | `capabilities.scheduled_jobs` | optional | unknown | scheduler decision |
 | `capabilities.notifications` | optional | unknown | notification workflow decision |
+| `capabilities.data_persistence` | conditional | unknown | `DATABASE-001` component decision |
 | `workload.users` | required when stated | unknown | scale/cost context |
 | `workload.peak_concurrency` | optional | unknown | capacity/scaling decisions |
 | `workload.read_write_ratio` | optional | unknown | storage/cache decisions |
@@ -51,8 +52,11 @@ The initial schema is deliberately small. A field should be added only when it g
 | `storage.access_mode` | conditional | unknown | `STORAGE-001` spec attribute `access_mode` |
 | `storage.delivery` | conditional | unknown | `STORAGE-001` spec attribute `delivery` |
 | `storage.minimum_capacity_gb` | conditional | unknown | `STORAGE-001` spec attribute `minimum_capacity` (unit: GB) |
+| `database.minimum_capacity_gb` | conditional | unknown | `DATABASE-001` spec attribute `minimum_capacity` (unit: GB) |
 
 The three `storage.*` fields were added during the V1 build (spec gap G-1): `STORAGE-001` lists `access_mode`, `delivery`, and `minimum_capacity` as blocking unknowns, but no requirement field could ever resolve them, so clarification had nothing to ask and they could only stay `UNKNOWN` forever. Their decision dependency is `STORAGE-001` (see `architecture-rules.md`). Allowed values: `access_mode: private | public`, `delivery: signed_url | direct`, `minimum_capacity_gb: number`.
+
+`capabilities.data_persistence` and `database.minimum_capacity_gb` are V1.1 (spec gap G-18), added from external walkthrough evidence: `WALKTHROUGH.md` e2/e3/e4 are three of five beginner posts whose central need was "where do I store user data?", and V1 had no field or rule that could see it. `database.minimum_capacity_gb` mirrors the `storage.minimum_capacity_gb` pattern exactly — a blocking unknown for `DATABASE-001`, resolved only by clarification, since a capacity number can never be invented from the boolean alone. Decision dependency: `DATABASE-001` (see `architecture-rules.md`). Unlike `storage.*`, no `access_mode`/`delivery`-equivalent attributes are defined: those STORAGE-001 attributes describe file-access semantics with no faithful analog for a database, so V1.1 does not invent one (`architecture-rules.md`'s numeric/attribute-invention prohibition applies to spec surface, not just numbers).
 
 ## Explicit prohibition
 
@@ -95,6 +99,8 @@ A field **blocks** a decision only if an implemented V1 rule or feasibility dime
 | `storage.access_mode` | 3 | `object_storage.spec.access_mode`, provider | `file_uploads` is not `false` |
 | `storage.minimum_capacity_gb` | 3 | `object_storage.spec.minimum_capacity`, provider, budget | `file_uploads` is not `false` |
 | `storage.delivery` | 2 | `object_storage.spec.delivery`, provider | `file_uploads` is not `false` |
+| `capabilities.data_persistence` | 4 | `relational_database` (`DATABASE-001`) | always |
+| `database.minimum_capacity_gb` | 3 | `relational_database.spec.minimum_capacity`, provider, budget | `data_persistence` is not `false` |
 | `constraints.monthly_budget` | 3 | budget feasibility | always |
 | `constraints.currency` | 3 | budget feasibility | `monthly_budget` is known and non-zero |
 | `operations.ai_request_duration` | 4 | none in V1 (queue, worker_pool, timeout_strategy, retry_strategy) | — |
@@ -114,7 +120,7 @@ The extraction layer enforces, mechanically, after the LLM responds:
 1. A `KNOWN` or `INFERRED` value must carry `source_text` that appears verbatim (case- and whitespace-insensitive) in the description. Otherwise the value is discarded, the field is set `UNKNOWN`, and an extraction issue is recorded and shown in review.
 1a. A `source_text` that is empty or whitespace-only does not count as a quote (code review fix).
 1b. A `KNOWN` numeric value must appear in its own quote (digits compared after removing thousands separators, e.g. `1500` matches "₹1,500"). A quote that does not contain the number is treated as no quote, so a number like "10k" is discarded rather than interpreted.
-2. Numeric fields (`workload.users`, `workload.peak_concurrency`, `workload.latency_target_ms`, `constraints.monthly_budget`, `constraints.team_size`, `storage.minimum_capacity_gb`) may not be `INFERRED` (see Explicit prohibition). An inferred number is discarded the same way.
+2. Numeric fields (`workload.users`, `workload.peak_concurrency`, `workload.latency_target_ms`, `constraints.monthly_budget`, `constraints.team_size`, `storage.minimum_capacity_gb`, `database.minimum_capacity_gb`) may not be `INFERRED` (see Explicit prohibition). An inferred number is discarded the same way.
 3. A field entry that does not validate (wrong type, unknown enum value, `RULE`/`PROVIDER_FACT` provenance, state/provenance mismatch) is rejected: the field is set `UNKNOWN` and an extraction issue names it for correction in review. Nothing is guessed in its place.
 4. A response that is not a JSON object at all is an extraction error; no requirement model is produced.
 

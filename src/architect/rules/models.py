@@ -18,6 +18,7 @@ ENUM_DOMAINS: dict[tuple[str, str], tuple[str, ...]] = {
 }
 MIN_QUANTITY_LIMITS: dict[tuple[str, str], str] = {
     ("object_storage", "minimum_capacity"): "object_storage.max_capacity_gb",  # GB
+    ("relational_database", "minimum_capacity"): "relational_database.max_capacity_gb",  # GB (G-18)
 }
 """minimum-quantity attribute -> the provider limitation fact key it is compared against"""
 

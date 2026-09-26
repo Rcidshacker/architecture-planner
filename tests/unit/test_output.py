@@ -62,7 +62,14 @@ def outputs(plan: ResolvedPlan) -> dict[str, str]:
 
 @pytest.fixture
 def plan() -> ResolvedPlan:
-    return resolve(requirements(capabilities__file_uploads=True, storage__access_mode="private"), load_seed_bundles())
+    return resolve(
+        requirements(
+            capabilities__file_uploads=True,
+            capabilities__data_persistence=False,
+            storage__access_mode="private",
+        ),
+        load_seed_bundles(),
+    )
 
 
 def test_diagram_nodes_are_exactly_the_models_non_excluded_components(plan: ResolvedPlan) -> None:
@@ -150,7 +157,10 @@ def test_known_capability_without_a_v1_rule_is_surfaced_not_dropped() -> None:
     """Walkthrough 0 regression (decision-resolution.md G-15)."""
     plan = resolve(
         requirements(
-            capabilities__file_uploads=True, capabilities__authentication=True, capabilities__ai_inference=True
+            capabilities__file_uploads=True,
+            capabilities__authentication=True,
+            capabilities__ai_inference=True,
+            capabilities__data_persistence=False,
         ),
         load_seed_bundles(),
     )

@@ -38,8 +38,9 @@ def test_plan_refuses_unconfirmed_requirements(tmp_path: Path, capsys: pytest.Ca
 def test_plan_asks_clarifications_then_writes_three_outputs(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     req, out = tmp_path / "req.json", tmp_path / "out"
     write_model(req, confirmed=True)
-    # round 1: file_uploads ("maybe" is invalid and re-asked); round 2: access_mode, capacity, budget
-    prompts = feed_input(monkeypatch, ["maybe", "true", "private", "?", "0"])
+    # round 1: file_uploads ("maybe" is invalid and re-asked), data_persistence (tied at impact 4);
+    # round 2: access_mode, capacity, budget
+    prompts = feed_input(monkeypatch, ["maybe", "true", "false", "private", "?", "0"])
 
     assert main(["plan", str(req), "--out-dir", str(out)]) == 0
 

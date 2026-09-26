@@ -27,6 +27,10 @@ def _budget_nonzero(m: RequirementModel) -> bool:
     return m.constraints.monthly_budget.value not in (None, 0)
 
 
+def _persistence_possible(m: RequirementModel) -> bool:
+    return m.capabilities.data_persistence.value is not False
+
+
 @dataclass(frozen=True)
 class FieldMeta:
     """Static decision metadata for one requirement field."""
@@ -65,6 +69,17 @@ _ACTIVE: dict[str, FieldMeta] = {  # row order = tie-break order (requirements-s
     ),
     "constraints.currency": FieldMeta(
         3, ("budget",), "Which currency is that budget in? (e.g. USD, INR)", _budget_nonzero
+    ),
+    "capabilities.data_persistence": FieldMeta(
+        4,
+        ("relational_database",),
+        "Does your app need to persist structured data long-term (e.g. user accounts, posts, records)? (true/false)",
+    ),
+    "database.minimum_capacity_gb": FieldMeta(
+        3,
+        ("relational_database.spec.minimum_capacity", "provider", "budget"),
+        "Roughly how many GB of database storage do you need? (number)",
+        _persistence_possible,
     ),
 }
 _RECORDED_ONLY = {"operations.ai_request_duration": FieldMeta(4, ())}  # queue/worker rules not in V1

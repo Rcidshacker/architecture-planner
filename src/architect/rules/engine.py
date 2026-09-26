@@ -46,6 +46,17 @@ SEEDED_RULES: tuple[Rule, ...] = (
         component="cache",
         status=ComponentStatus.NOT_REQUIRED,
     ),
+    # V1.1, spec gap G-18: added from walkthrough evidence (WALKTHROUGH.md e2/e3/e4).
+    Rule(
+        id="DATABASE-001",
+        category=RuleCategory.HARD_REQUIREMENT,
+        component="relational_database",
+        status=ComponentStatus.REQUIRED,
+        trigger="capabilities.data_persistence",
+        spec_sources={
+            "minimum_capacity": "database.minimum_capacity_gb",
+        },
+    ),
 )
 
 _STRENGTH = {RuleCategory.HARD_REQUIREMENT: 3, RuleCategory.PREFERENCE: 2, RuleCategory.DEFAULT_AVOID: 1}

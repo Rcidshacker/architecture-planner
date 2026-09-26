@@ -106,6 +106,8 @@ conservative here).
   do I store user data?", but the V1 schema has no persistence field and no rule, so the tool cannot see it.
   These three posts are the walkthrough evidence CLAUDE.md requires for a new rule (e.g. a `capabilities.data_persistence`
   field plus a `DATABASE-001` rule). Recommended as the first V1.1 rule.
+  **Update (V1.1): built.** See "V1.1: DATABASE-001" below — `capabilities.data_persistence` and `DATABASE-001` exist
+  now, using exactly this field name and rule shape. e2/e3/e4 rerun and confirmed fixed.
 - **Capabilities without rules dominate unresolved output.** `authentication` (4/5) and `realtime` (e5) are now
   surfaced (G-15), but the brief can only say "not determined by this tool" for them.
 - **Budget phrases without numbers.** e4's "I don't have money to buy host" stayed UNKNOWN. That is correct under the
@@ -120,3 +122,41 @@ conservative here).
 - No evidence yet for a UI, Trawl integration, or a learned classifier. The bottleneck is **rule coverage**
   (persistence, auth, realtime), not extraction quality or provider data freshness.
 - Clarification burden stayed small (2-4 questions, at most 2 rounds). The 3-round cap never bound.
+
+## V1.1: `DATABASE-001` added (spec gap G-18)
+
+Added `capabilities.data_persistence` (requirement field) and `DATABASE-001` (rule, component `relational_database`)
+per the walkthrough finding above, on the user's explicit "build minimal now" decision. Mirrors `STORAGE-001`
+exactly: one condition, one component, one spec attribute (`minimum_capacity`, GB) copied from a requirement field,
+never derived from the boolean. No engine-type (relational vs document) or other attribute was added — `STORAGE-001`
+has no equivalent for one, so V1.1 does not invent one either (`architecture-rules.md`, `requirements-schema.md`
+G-18). Provider evidence: two new hand-seeded facts, `relational_database.max_capacity_gb` = 0.5 (Supabase Free)
+and 8 (Supabase Pro), both freshly fetched from <https://supabase.com/pricing> (not carried over from the original
+seeding pass), reusing the `component.relational_database` capability fact the original build session had already
+seeded on both Supabase bundles but that no rule had ever consumed until now.
+
+e2, e3, and e4 — the three posts that found the original gap — were rerun end-to-end with the real `claude -p`
+extractor, confirmed as-is (no edits, matching the original run's methodology), and every clarification question
+again answered "don't know" (artifacts in `walkthrough/eN/v1.1/`, mirroring the original `walkthrough/eN/` layout).
+
+| | e2 | e3 | e4 |
+|---|---|---|---|
+| `data_persistence` extracted | KNOWN/USER, "store huge number of users and there profile information" | KNOWN/USER, "record the user's log-in details and other information regarding their progress with the app on a database hosted on the server" | KNOWN/USER, "wpf application which have sql database server" |
+| `relational_database` status | **REQUIRED** (was invisible before V1.1) | **REQUIRED** (was invisible before V1.1) | **REQUIRED** (was invisible before V1.1) |
+| Feasibility A / P / B / C | F / U / U / D | F / U / U / D | F / U / U / D |
+| Clarification rounds | 2 | 2 | 1 |
+| Unresolved items | 5 | 6 | 7 |
+
+(F = FEASIBLE, U = UNVERIFIED, D = DEFERRED.) Provider stays `UNVERIFIED`, not `FEASIBLE`, in all three: none of the
+posts states a database size, "don't know" is the answer to the capacity clarification question, and Supabase's
+seeded capacity facts are not `"unlimited"`, so the honest state is unverified, not a guess in either direction —
+exactly `decision-resolution.md`'s definition of `UNVERIFIED`. The fix is that `relational_database` is now visible
+and `REQUIRED` at all; it was completely absent from every V1 output before this change.
+
+e4 is a real unit-conversion regression case worth naming: its source text states "My Database is only 20 mb", and
+the mechanical anti-invention check (`requirements-schema.md` G-3 rule 1b) correctly refuses a `0.02` GB value for
+that quote, since "0.02" does not appear in "20 mb" — the number itself must come from the user, not from the tool
+converting units on their behalf. `database.minimum_capacity_gb` stays `UNKNOWN` for e4, same as e2/e3.
+
+No new bugs found in this rerun. Existing failures 1-5 stay fixed (auth/ai_inference surfaced, excluded-offering
+explanations, undetermined-component feasibility, budget provenance, CLI error text).

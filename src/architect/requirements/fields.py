@@ -7,7 +7,7 @@ from pydantic import BaseModel, TypeAdapter, ValidationError
 
 from architect.requirements.models import Provenance, RequirementModel, RequirementState, RequirementValue
 
-_SECTIONS = ("application", "capabilities", "workload", "operations", "constraints", "storage")
+_SECTIONS = ("application", "capabilities", "workload", "operations", "constraints", "storage", "database")
 
 
 def _section_type(section: str) -> type[BaseModel]:
