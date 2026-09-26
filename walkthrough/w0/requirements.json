@@ -1,0 +1,205 @@
+{
+  "confirmed": true,
+  "application": {
+    "name": {
+      "value": "ResumeForge",
+      "state": "KNOWN",
+      "provenance": "USER",
+      "confidence": null,
+      "source_text": "ResumeForge"
+    },
+    "description": "ResumeForge: job seekers sign in with Google, upload their resume as a PDF and paste a job description, and an LLM rewrites the resume to fit the job. They download the tailored PDF a minute later. Around 200 users at launch, maybe 20 at the same time. I want to keep hosting under $10 a month."
+  },
+  "capabilities": {
+    "authentication": {
+      "value": true,
+      "state": "KNOWN",
+      "provenance": "USER",
+      "confidence": null,
+      "source_text": "job seekers sign in with Google"
+    },
+    "file_uploads": {
+      "value": true,
+      "state": "KNOWN",
+      "provenance": "USER",
+      "confidence": null,
+      "source_text": "upload their resume as a PDF"
+    },
+    "ai_inference": {
+      "value": true,
+      "state": "KNOWN",
+      "provenance": "USER",
+      "confidence": null,
+      "source_text": "an LLM rewrites the resume to fit the job"
+    },
+    "realtime": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "payments": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "search": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "scheduled_jobs": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "notifications": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    }
+  },
+  "workload": {
+    "users": {
+      "value": 200,
+      "state": "KNOWN",
+      "provenance": "USER",
+      "confidence": null,
+      "source_text": "Around 200 users at launch"
+    },
+    "peak_concurrency": {
+      "value": 20,
+      "state": "KNOWN",
+      "provenance": "USER",
+      "confidence": null,
+      "source_text": "maybe 20 at the same time"
+    },
+    "read_write_ratio": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "latency_target_ms": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "request_burstiness": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    }
+  },
+  "operations": {
+    "ai_request_mode": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "ai_request_duration": {
+      "value": "minutes",
+      "state": "INFERRED",
+      "provenance": "INFERENCE",
+      "confidence": null,
+      "source_text": "They download the tailored PDF a minute later"
+    },
+    "user_waits_for_completion": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "retryable_background_work": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "public_asset_delivery": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    }
+  },
+  "constraints": {
+    "monthly_budget": {
+      "value": 10.0,
+      "state": "KNOWN",
+      "provenance": "USER",
+      "confidence": null,
+      "source_text": "I want to keep hosting under $10 a month"
+    },
+    "currency": {
+      "value": "USD",
+      "state": "KNOWN",
+      "provenance": "USER",
+      "confidence": null,
+      "source_text": "set in review: USD"
+    },
+    "team_size": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "provider_lock_in": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "region_requirements": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    }
+  },
+  "storage": {
+    "access_mode": {
+      "value": "private",
+      "state": "KNOWN",
+      "provenance": "USER",
+      "confidence": null,
+      "source_text": "clarification answer: private"
+    },
+    "delivery": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "minimum_capacity_gb": {
+      "value": 2.0,
+      "state": "KNOWN",
+      "provenance": "USER",
+      "confidence": null,
+      "source_text": "clarification answer: 2"
+    }
+  }
+}

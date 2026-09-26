@@ -1,0 +1,3 @@
+Upload images to database
+
+I am new i WPF but i make wpf application which have sql database server. My Database is only 20 mb because it's on "appharbor". In this app every user can upload image for avatar but i can't save this pictures for every user because my db is too small. Can you recommend me where to save these images and how to upload their urls in db so every user can see other users avatar picture.If anyone can give me other ideas how to upload images for every user to database tell please me. Also i don't have money to buy host because i am from Bulgaria and i am student 11-th grade. Thank you a lot.

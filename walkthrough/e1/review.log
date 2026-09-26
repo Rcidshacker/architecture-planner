@@ -1,0 +1,35 @@
+Description: For a web app that allows simple image uploads, how should I store the images? Confused about file system vs. cdn
+
+Every search result says something about storing the images in the file system but store the paths in the database, but I'm not sure exactly what "file system" means. Would that mean you have something like: /public (assets) /js /css /img /app (frontend) /server (backend) and you'd upload directly to that /public/img directory? I remember trying something like that in the past with a Node.js app hosted on Heroku, and it wouldn't let me. I had to set up Amazon S3 and upload the images THERE, which leads to my confusion. Is using something like Amazon S3 the usual practice or do people upload directly to the /img directory (assuming this is the "file system"?) and it just happened to be the case that Heroku doesn't allow this but other hosts do?
+
+
+application.name                     -                  UNKNOWN   UNKNOWN   
+capabilities.authentication          -                  UNKNOWN   UNKNOWN   
+capabilities.file_uploads            true               KNOWN     USER        "a web app that allows simple image uploads"
+capabilities.ai_inference            -                  UNKNOWN   UNKNOWN   
+capabilities.realtime                -                  UNKNOWN   UNKNOWN   
+capabilities.payments                -                  UNKNOWN   UNKNOWN   
+capabilities.search                  -                  UNKNOWN   UNKNOWN   
+capabilities.scheduled_jobs          -                  UNKNOWN   UNKNOWN   
+capabilities.notifications           -                  UNKNOWN   UNKNOWN   
+workload.users                       -                  UNKNOWN   UNKNOWN   
+workload.peak_concurrency            -                  UNKNOWN   UNKNOWN   
+workload.read_write_ratio            -                  UNKNOWN   UNKNOWN   
+workload.latency_target_ms           -                  UNKNOWN   UNKNOWN   
+workload.request_burstiness          -                  UNKNOWN   UNKNOWN   
+operations.ai_request_mode           -                  UNKNOWN   UNKNOWN   
+operations.ai_request_duration       -                  UNKNOWN   UNKNOWN   
+operations.user_waits_for_completion -                  UNKNOWN   UNKNOWN   
+operations.retryable_background_work -                  UNKNOWN   UNKNOWN   
+operations.public_asset_delivery     -                  UNKNOWN   UNKNOWN   
+constraints.monthly_budget           -                  UNKNOWN   UNKNOWN   
+constraints.currency                 -                  UNKNOWN   UNKNOWN   
+constraints.team_size                -                  UNKNOWN   UNKNOWN   
+constraints.provider_lock_in         -                  UNKNOWN   UNKNOWN   
+constraints.region_requirements      -                  UNKNOWN   UNKNOWN   
+storage.access_mode                  -                  UNKNOWN   UNKNOWN   
+storage.delivery                     -                  UNKNOWN   UNKNOWN   
+storage.minimum_capacity_gb          -                  UNKNOWN   UNKNOWN   
+
+Edit with <field>=<value> (use ? for unknown). 'confirm' to accept, 'quit' to save unconfirmed.
+review> confirmed

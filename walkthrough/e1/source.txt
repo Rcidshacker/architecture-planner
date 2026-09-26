@@ -1,0 +1,3 @@
+https://stackoverflow.com/questions/32342260/for-a-web-app-that-allows-simple-image-uploads-how-should-i-store-the-images-c
+author: atkayla
+license: CC BY-SA (Stack Overflow)

@@ -1,0 +1,394 @@
+[
+  {
+    "provider": "Cloudflare",
+    "services": [
+      "R2"
+    ],
+    "included_capabilities": [
+      "object_storage"
+    ],
+    "cost_model": {
+      "currency": "USD",
+      "fixed_monthly": 0,
+      "usage_priced": true
+    },
+    "constraints": [
+      "Free tier: 10 GB-month storage, 1M Class A and 10M Class B operations per month; usage beyond is billed"
+    ],
+    "evidence": [
+      {
+        "provider": "Cloudflare",
+        "service": "R2",
+        "fact_type": "capability",
+        "key": "component.object_storage",
+        "value": true,
+        "source_url": "https://developers.cloudflare.com/r2/pricing/",
+        "retrieved_at": "2026-09-25T15:01:00+05:30",
+        "verified_at": "2026-09-25T15:01:00+05:30",
+        "verification_status": "VERIFIED"
+      },
+      {
+        "provider": "Cloudflare",
+        "service": "R2",
+        "fact_type": "capability",
+        "key": "object_storage.access_mode.private",
+        "value": true,
+        "source_url": "https://developers.cloudflare.com/r2/buckets/public-buckets/",
+        "retrieved_at": "2026-09-25T15:01:00+05:30",
+        "verified_at": "2026-09-25T15:01:00+05:30",
+        "verification_status": "VERIFIED"
+      },
+      {
+        "provider": "Cloudflare",
+        "service": "R2",
+        "fact_type": "capability",
+        "key": "object_storage.access_mode.public",
+        "value": true,
+        "source_url": "https://developers.cloudflare.com/r2/buckets/public-buckets/",
+        "retrieved_at": "2026-09-25T15:01:00+05:30",
+        "verified_at": "2026-09-25T15:01:00+05:30",
+        "verification_status": "VERIFIED"
+      },
+      {
+        "provider": "Cloudflare",
+        "service": "R2",
+        "fact_type": "capability",
+        "key": "object_storage.delivery.signed_url",
+        "value": true,
+        "source_url": "https://developers.cloudflare.com/r2/api/s3/presigned-urls/",
+        "retrieved_at": "2026-09-25T15:01:00+05:30",
+        "verified_at": "2026-09-25T15:01:00+05:30",
+        "verification_status": "VERIFIED"
+      },
+      {
+        "provider": "Cloudflare",
+        "service": "R2",
+        "fact_type": "capability",
+        "key": "object_storage.delivery.direct",
+        "value": true,
+        "source_url": "https://developers.cloudflare.com/r2/buckets/public-buckets/",
+        "retrieved_at": "2026-09-25T15:01:00+05:30",
+        "verified_at": "2026-09-25T15:01:00+05:30",
+        "verification_status": "VERIFIED"
+      },
+      {
+        "provider": "Cloudflare",
+        "service": "R2",
+        "fact_type": "limitation",
+        "key": "object_storage.max_capacity_gb",
+        "value": "unlimited",
+        "source_url": "https://developers.cloudflare.com/r2/platform/limits/",
+        "retrieved_at": "2026-09-25T15:12:00+05:30",
+        "verified_at": "2026-09-25T15:12:00+05:30",
+        "verification_status": "VERIFIED"
+      },
+      {
+        "provider": "Cloudflare",
+        "service": "R2",
+        "fact_type": "pricing",
+        "key": "currency",
+        "value": "USD",
+        "source_url": "https://developers.cloudflare.com/r2/pricing/",
+        "retrieved_at": "2026-09-25T15:01:00+05:30",
+        "verified_at": "2026-09-25T15:01:00+05:30",
+        "verification_status": "VERIFIED"
+      },
+      {
+        "provider": "Cloudflare",
+        "service": "R2",
+        "fact_type": "pricing",
+        "key": "fixed_monthly",
+        "value": 0,
+        "source_url": "https://developers.cloudflare.com/r2/pricing/",
+        "retrieved_at": "2026-09-25T15:01:00+05:30",
+        "verified_at": "2026-09-25T15:01:00+05:30",
+        "verification_status": "VERIFIED"
+      },
+      {
+        "provider": "Cloudflare",
+        "service": "R2",
+        "fact_type": "pricing",
+        "key": "usage_priced",
+        "value": true,
+        "source_url": "https://developers.cloudflare.com/r2/pricing/",
+        "retrieved_at": "2026-09-25T15:01:00+05:30",
+        "verified_at": "2026-09-25T15:01:00+05:30",
+        "verification_status": "VERIFIED"
+      }
+    ]
+  },
+  {
+    "provider": "Supabase",
+    "services": [
+      "Free"
+    ],
+    "included_capabilities": [
+      "relational_database",
+      "authentication",
+      "object_storage"
+    ],
+    "cost_model": {
+      "currency": "USD",
+      "fixed_monthly": 0,
+      "usage_priced": false
+    },
+    "constraints": [
+      "Free projects are paused after 1 week of inactivity; limit of 2 active projects",
+      "500 MB database size, 50 MB max file upload size"
+    ],
+    "evidence": [
+      {
+        "provider": "Supabase",
+        "service": "Free",
+        "fact_type": "capability",
+        "key": "component.relational_database",
+        "value": true,
+        "source_url": "https://supabase.com/pricing",
+        "retrieved_at": "2026-09-25T15:01:00+05:30",
+        "verified_at": "2026-09-25T15:01:00+05:30",
+        "verification_status": "VERIFIED"
+      },
+      {
+        "provider": "Supabase",
+        "service": "Free",
+        "fact_type": "capability",
+        "key": "component.authentication",
+        "value": true,
+        "source_url": "https://supabase.com/pricing",
+        "retrieved_at": "2026-09-25T15:01:00+05:30",
+        "verified_at": "2026-09-25T15:01:00+05:30",
+        "verification_status": "VERIFIED"
+      },
+      {
+        "provider": "Supabase",
+        "service": "Free",
+        "fact_type": "capability",
+        "key": "component.object_storage",
+        "value": true,
+        "source_url": "https://supabase.com/pricing",
+        "retrieved_at": "2026-09-25T15:01:00+05:30",
+        "verified_at": "2026-09-25T15:01:00+05:30",
+        "verification_status": "VERIFIED"
+      },
+      {
+        "provider": "Supabase",
+        "service": "Free",
+        "fact_type": "capability",
+        "key": "object_storage.access_mode.private",
+        "value": true,
+        "source_url": "https://supabase.com/docs/guides/storage/buckets/fundamentals",
+        "retrieved_at": "2026-09-25T15:01:00+05:30",
+        "verified_at": "2026-09-25T15:01:00+05:30",
+        "verification_status": "VERIFIED"
+      },
+      {
+        "provider": "Supabase",
+        "service": "Free",
+        "fact_type": "capability",
+        "key": "object_storage.access_mode.public",
+        "value": true,
+        "source_url": "https://supabase.com/docs/guides/storage/buckets/fundamentals",
+        "retrieved_at": "2026-09-25T15:01:00+05:30",
+        "verified_at": "2026-09-25T15:01:00+05:30",
+        "verification_status": "VERIFIED"
+      },
+      {
+        "provider": "Supabase",
+        "service": "Free",
+        "fact_type": "capability",
+        "key": "object_storage.delivery.signed_url",
+        "value": true,
+        "source_url": "https://supabase.com/docs/guides/storage/serving/downloads",
+        "retrieved_at": "2026-09-25T15:01:00+05:30",
+        "verified_at": "2026-09-25T15:01:00+05:30",
+        "verification_status": "VERIFIED"
+      },
+      {
+        "provider": "Supabase",
+        "service": "Free",
+        "fact_type": "capability",
+        "key": "object_storage.delivery.direct",
+        "value": true,
+        "source_url": "https://supabase.com/docs/guides/storage/serving/downloads",
+        "retrieved_at": "2026-09-25T15:01:00+05:30",
+        "verified_at": "2026-09-25T15:01:00+05:30",
+        "verification_status": "VERIFIED"
+      },
+      {
+        "provider": "Supabase",
+        "service": "Free",
+        "fact_type": "limitation",
+        "key": "object_storage.max_capacity_gb",
+        "value": 1,
+        "source_url": "https://supabase.com/pricing",
+        "retrieved_at": "2026-09-25T15:01:00+05:30",
+        "verified_at": "2026-09-25T15:01:00+05:30",
+        "verification_status": "VERIFIED"
+      },
+      {
+        "provider": "Supabase",
+        "service": "Free",
+        "fact_type": "pricing",
+        "key": "currency",
+        "value": "USD",
+        "source_url": "https://supabase.com/pricing",
+        "retrieved_at": "2026-09-25T15:01:00+05:30",
+        "verified_at": "2026-09-25T15:01:00+05:30",
+        "verification_status": "VERIFIED"
+      },
+      {
+        "provider": "Supabase",
+        "service": "Free",
+        "fact_type": "pricing",
+        "key": "fixed_monthly",
+        "value": 0,
+        "source_url": "https://supabase.com/pricing",
+        "retrieved_at": "2026-09-25T15:01:00+05:30",
+        "verified_at": "2026-09-25T15:01:00+05:30",
+        "verification_status": "VERIFIED"
+      },
+      {
+        "provider": "Supabase",
+        "service": "Free",
+        "fact_type": "pricing",
+        "key": "usage_priced",
+        "value": false,
+        "source_url": "https://supabase.com/pricing",
+        "retrieved_at": "2026-09-25T15:01:00+05:30",
+        "verified_at": "2026-09-25T15:01:00+05:30",
+        "verification_status": "VERIFIED"
+      }
+    ]
+  },
+  {
+    "provider": "Supabase",
+    "services": [
+      "Pro"
+    ],
+    "included_capabilities": [
+      "relational_database",
+      "authentication",
+      "object_storage"
+    ],
+    "cost_model": {
+      "currency": "USD",
+      "fixed_monthly": 25,
+      "usage_priced": true
+    },
+    "constraints": [
+      "100 GB file storage included, then $0.0213 per GB; no storage ceiling is stated on the source page"
+    ],
+    "evidence": [
+      {
+        "provider": "Supabase",
+        "service": "Pro",
+        "fact_type": "capability",
+        "key": "component.relational_database",
+        "value": true,
+        "source_url": "https://supabase.com/pricing",
+        "retrieved_at": "2026-09-25T15:01:00+05:30",
+        "verified_at": "2026-09-25T15:01:00+05:30",
+        "verification_status": "VERIFIED"
+      },
+      {
+        "provider": "Supabase",
+        "service": "Pro",
+        "fact_type": "capability",
+        "key": "component.authentication",
+        "value": true,
+        "source_url": "https://supabase.com/pricing",
+        "retrieved_at": "2026-09-25T15:01:00+05:30",
+        "verified_at": "2026-09-25T15:01:00+05:30",
+        "verification_status": "VERIFIED"
+      },
+      {
+        "provider": "Supabase",
+        "service": "Pro",
+        "fact_type": "capability",
+        "key": "component.object_storage",
+        "value": true,
+        "source_url": "https://supabase.com/pricing",
+        "retrieved_at": "2026-09-25T15:01:00+05:30",
+        "verified_at": "2026-09-25T15:01:00+05:30",
+        "verification_status": "VERIFIED"
+      },
+      {
+        "provider": "Supabase",
+        "service": "Pro",
+        "fact_type": "capability",
+        "key": "object_storage.access_mode.private",
+        "value": true,
+        "source_url": "https://supabase.com/docs/guides/storage/buckets/fundamentals",
+        "retrieved_at": "2026-09-25T15:01:00+05:30",
+        "verified_at": "2026-09-25T15:01:00+05:30",
+        "verification_status": "VERIFIED"
+      },
+      {
+        "provider": "Supabase",
+        "service": "Pro",
+        "fact_type": "capability",
+        "key": "object_storage.access_mode.public",
+        "value": true,
+        "source_url": "https://supabase.com/docs/guides/storage/buckets/fundamentals",
+        "retrieved_at": "2026-09-25T15:01:00+05:30",
+        "verified_at": "2026-09-25T15:01:00+05:30",
+        "verification_status": "VERIFIED"
+      },
+      {
+        "provider": "Supabase",
+        "service": "Pro",
+        "fact_type": "capability",
+        "key": "object_storage.delivery.signed_url",
+        "value": true,
+        "source_url": "https://supabase.com/docs/guides/storage/serving/downloads",
+        "retrieved_at": "2026-09-25T15:01:00+05:30",
+        "verified_at": "2026-09-25T15:01:00+05:30",
+        "verification_status": "VERIFIED"
+      },
+      {
+        "provider": "Supabase",
+        "service": "Pro",
+        "fact_type": "capability",
+        "key": "object_storage.delivery.direct",
+        "value": true,
+        "source_url": "https://supabase.com/docs/guides/storage/serving/downloads",
+        "retrieved_at": "2026-09-25T15:01:00+05:30",
+        "verified_at": "2026-09-25T15:01:00+05:30",
+        "verification_status": "VERIFIED"
+      },
+      {
+        "provider": "Supabase",
+        "service": "Pro",
+        "fact_type": "pricing",
+        "key": "currency",
+        "value": "USD",
+        "source_url": "https://supabase.com/pricing",
+        "retrieved_at": "2026-09-25T15:01:00+05:30",
+        "verified_at": "2026-09-25T15:01:00+05:30",
+        "verification_status": "VERIFIED"
+      },
+      {
+        "provider": "Supabase",
+        "service": "Pro",
+        "fact_type": "pricing",
+        "key": "fixed_monthly",
+        "value": 25,
+        "source_url": "https://supabase.com/pricing",
+        "retrieved_at": "2026-09-25T15:01:00+05:30",
+        "verified_at": "2026-09-25T15:01:00+05:30",
+        "verification_status": "VERIFIED"
+      },
+      {
+        "provider": "Supabase",
+        "service": "Pro",
+        "fact_type": "pricing",
+        "key": "usage_priced",
+        "value": true,
+        "source_url": "https://supabase.com/pricing",
+        "retrieved_at": "2026-09-25T15:01:00+05:30",
+        "verified_at": "2026-09-25T15:01:00+05:30",
+        "verification_status": "VERIFIED"
+      }
+    ]
+  }
+]

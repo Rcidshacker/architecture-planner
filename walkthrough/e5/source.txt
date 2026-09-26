@@ -1,0 +1,3 @@
+https://stackoverflow.com/questions/46934583/want-to-build-application-like-skype-or-whatsapp
+author: dwtester
+license: CC BY-SA (Stack Overflow)

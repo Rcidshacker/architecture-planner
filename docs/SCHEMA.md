@@ -85,6 +85,23 @@ constraints:
   region_requirements: string[] | UNKNOWN
 ```
 
+### Storage (added in the V1 build, see `requirements-schema.md` G-1)
+
+```yaml
+storage:
+  access_mode: private | public | UNKNOWN
+  delivery: signed_url | direct | UNKNOWN
+  minimum_capacity_gb: number | UNKNOWN
+```
+
+### Review status (spec gap G-13)
+
+```yaml
+confirmed: boolean   # false after extraction; true only after human review confirms
+```
+
+Every field above is stored as a requirement value (value/state/provenance). State and provenance must pair: `KNOWN` ↔ `USER` or `RULE`, `INFERRED` ↔ `INFERENCE`, `UNKNOWN` ↔ `UNKNOWN` with a null value. The rule engine refuses a model with `confirmed: false`. Every numeric requirement value must be finite and non-negative (no `NaN`, `Infinity`, or negative budgets/capacities/counts), whether it comes from extraction, review, or clarification.
+
 The presence of a field does not mean that the system may infer it without evidence.
 
 ## Requirement-to-decision dependency
@@ -165,6 +182,15 @@ provider_bundle:
   constraints: []
   evidence: []
 ```
+
+V1 concrete shapes (spec gap G-14):
+
+- `evidence` is the list of provider facts backing the bundle. `included_capabilities` and `cost_model` are derived from `evidence`, never asserted independently; a bundle whose declared capability or cost has no backing fact fails validation.
+- Fact key conventions: `component.<component>` (capability, `true`), `<component>.<attribute>.<value>` (capability, boolean: whether that enum value is supported; one fact per value so each carries its own source), `object_storage.max_capacity_gb` (limitation, number or `"unlimited"`, only when the source states it), and pricing facts `currency`, `fixed_monthly`, `usage_priced`.
+- Seed data lives in `src/architect/providers/seed_facts.json` (inside the package so it ships with the build); every fact is hand-entered from the cited page. A limit the source does not state is left out (it becomes missing evidence), never filled from general knowledge.
+- `cost_model: {currency: string, fixed_monthly: number, usage_priced: boolean}`.
+- A bundle is one plan of one provider (e.g. Supabase Free and Supabase Pro are separate bundles), because limits and prices differ per plan.
+- Component `spec` values are scalars or the literal `UNKNOWN`.
 
 ## Feasibility result
 

@@ -1,0 +1,32 @@
+{
+  "nodes": [
+    {
+      "id": "application",
+      "label": "(unnamed application)",
+      "kind": "application"
+    },
+    {
+      "id": "object_storage",
+      "label": "object_storage",
+      "kind": "component",
+      "status": "REQUIRED",
+      "spec": {
+        "access_mode": "UNKNOWN",
+        "delivery": "UNKNOWN",
+        "minimum_capacity": "UNKNOWN"
+      },
+      "provider_options": [
+        "Cloudflare R2",
+        "Supabase Free",
+        "Supabase Pro"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "application",
+      "to": "object_storage",
+      "status": "REQUIRED"
+    }
+  ]
+}

@@ -1,0 +1,205 @@
+{
+  "confirmed": false,
+  "application": {
+    "name": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "description": "Upload images to database\n\nI am new i WPF but i make wpf application which have sql database server. My Database is only 20 mb because it's on \"appharbor\". In this app every user can upload image for avatar but i can't save this pictures for every user because my db is too small. Can you recommend me where to save these images and how to upload their urls in db so every user can see other users avatar picture.If anyone can give me other ideas how to upload images for every user to database tell please me. Also i don't have money to buy host because i am from Bulgaria and i am student 11-th grade. Thank you a lot.\n"
+  },
+  "capabilities": {
+    "authentication": {
+      "value": true,
+      "state": "INFERRED",
+      "provenance": "INFERENCE",
+      "confidence": null,
+      "source_text": "every user can upload image for avatar"
+    },
+    "file_uploads": {
+      "value": true,
+      "state": "KNOWN",
+      "provenance": "USER",
+      "confidence": null,
+      "source_text": "every user can upload image for avatar"
+    },
+    "ai_inference": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "realtime": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "payments": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "search": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "scheduled_jobs": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "notifications": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    }
+  },
+  "workload": {
+    "users": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "peak_concurrency": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "read_write_ratio": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "latency_target_ms": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "request_burstiness": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    }
+  },
+  "operations": {
+    "ai_request_mode": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "ai_request_duration": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "user_waits_for_completion": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "retryable_background_work": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "public_asset_delivery": {
+      "value": true,
+      "state": "INFERRED",
+      "provenance": "INFERENCE",
+      "confidence": null,
+      "source_text": "so every user can see other users avatar picture"
+    }
+  },
+  "constraints": {
+    "monthly_budget": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "currency": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "team_size": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "provider_lock_in": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "region_requirements": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    }
+  },
+  "storage": {
+    "access_mode": {
+      "value": "public",
+      "state": "INFERRED",
+      "provenance": "INFERENCE",
+      "confidence": null,
+      "source_text": "so every user can see other users avatar picture"
+    },
+    "delivery": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "minimum_capacity_gb": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    }
+  }
+}

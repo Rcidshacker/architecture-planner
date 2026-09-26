@@ -1,0 +1,3 @@
+Creating a scalable database for android app | cloud hosted
+
+I am working to launch an app which in future will store huge number of users and there profile information. But I Wanted to start small to pre-test my app idea , so what will be the options for hosting database which are cost effective initially and scalable in future , and easy to integrate too. Many thanks for your inputs

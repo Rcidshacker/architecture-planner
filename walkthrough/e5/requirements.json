@@ -1,0 +1,205 @@
+{
+  "confirmed": true,
+  "application": {
+    "name": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "description": "Want to build application like Skype or Whatsapp\n\nI want to build an application on android platform with the features of video call and text messages over Internet, similar of VOIP which has video streaming function. Can any one help what are the requirements to build this project and where to start with? I have came up with many online solution which ask me to register to this sites and after that I can build an application using there source code and libraries but I have to pay a lot for using their service. I manage to build the protocol of this project to run on the local network using socket connection. Now I want to make it work for over Internet but their are many obstacles. First is the NAT which block my socket connection to particular ports. So I thing I have to use some this else other then Socket connection but I don't know what should I go for. Another is I tried to work on Openfire server which allows me to register users and maintains the user data on server sideand build client app which can handle chat and file transfer but cannot perform video call function. I want to build an application on android device which will allow user to login and chat/videocall/file transfer with the people who are added in their contact list. Thank you for reading my query I hope you understand my requirements, please do reply if you have any experience or idea for how should this project be build and what are the requirements.\n"
+  },
+  "capabilities": {
+    "authentication": {
+      "value": true,
+      "state": "KNOWN",
+      "provenance": "USER",
+      "confidence": null,
+      "source_text": "allow user to login"
+    },
+    "file_uploads": {
+      "value": true,
+      "state": "INFERRED",
+      "provenance": "INFERENCE",
+      "confidence": null,
+      "source_text": "chat/videocall/file transfer"
+    },
+    "ai_inference": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "realtime": {
+      "value": true,
+      "state": "INFERRED",
+      "provenance": "INFERENCE",
+      "confidence": null,
+      "source_text": "video call and text messages over Internet"
+    },
+    "payments": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "search": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "scheduled_jobs": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "notifications": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    }
+  },
+  "workload": {
+    "users": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "peak_concurrency": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "read_write_ratio": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "latency_target_ms": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "request_burstiness": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    }
+  },
+  "operations": {
+    "ai_request_mode": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "ai_request_duration": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "user_waits_for_completion": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "retryable_background_work": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "public_asset_delivery": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    }
+  },
+  "constraints": {
+    "monthly_budget": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "currency": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "team_size": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "provider_lock_in": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "region_requirements": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    }
+  },
+  "storage": {
+    "access_mode": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "delivery": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "minimum_capacity_gb": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    }
+  }
+}

@@ -1,0 +1,205 @@
+{
+  "confirmed": false,
+  "application": {
+    "name": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "description": "Creating a scalable database for android app | cloud hosted\n\nI am working to launch an app which in future will store huge number of users and there profile information. But I Wanted to start small to pre-test my app idea , so what will be the options for hosting database which are cost effective initially and scalable in future , and easy to integrate too. Many thanks for your inputs\n"
+  },
+  "capabilities": {
+    "authentication": {
+      "value": true,
+      "state": "INFERRED",
+      "provenance": "INFERENCE",
+      "confidence": null,
+      "source_text": "store huge number of users and there profile information"
+    },
+    "file_uploads": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "ai_inference": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "realtime": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "payments": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "search": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "scheduled_jobs": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "notifications": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    }
+  },
+  "workload": {
+    "users": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "peak_concurrency": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "read_write_ratio": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "latency_target_ms": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "request_burstiness": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    }
+  },
+  "operations": {
+    "ai_request_mode": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "ai_request_duration": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "user_waits_for_completion": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "retryable_background_work": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "public_asset_delivery": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    }
+  },
+  "constraints": {
+    "monthly_budget": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "currency": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "team_size": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "provider_lock_in": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "region_requirements": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    }
+  },
+  "storage": {
+    "access_mode": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "delivery": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "minimum_capacity_gb": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    }
+  }
+}

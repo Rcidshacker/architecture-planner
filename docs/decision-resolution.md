@@ -214,6 +214,65 @@ Every consequential value or decision must be attributable to one of:
 
 If no provenance can be assigned, the value remains `UNKNOWN`.
 
+## V1 implementation semantics (spec-gap resolutions made during the V1 build)
+
+### G-8: architecture feasibility
+
+- `INFEASIBLE` when hard rule outputs for one component conflict (`architecture-rules.md` G-7).
+- `FEASIBLE` otherwise. `UNDETERMINED` components do not make the architecture infeasible in principle; they are reported as unresolved items. `UNVERIFIED` is not used for this dimension in V1 because no V1 rule depends on external evidence.
+
+### G-9: provider matching
+
+Only `REQUIRED` components are mapped to providers. Each spec attribute is checked against the provider's facts and yields `SATISFIED`, `VIOLATED`, or `UNVERIFIED`:
+
+- Only facts with `verification_status: VERIFIED` count. A `STALE` or `UNKNOWN` fact is treated as missing evidence and is reported in `missing_evidence`; it is never shown as current verification. Staleness is taken from `verification_status`; V1 does not invent an age threshold.
+- Enum attribute, known value `v`: `SATISFIED` if the verified fact `<component>.<attribute>.v` is `true`, `VIOLATED` if it is `false`, `UNVERIFIED` if there is no verified fact.
+- Enum attribute, `UNKNOWN` value: evaluate every value in the attribute's domain as above. `SATISFIED` only if all are satisfied (whatever the user later answers, the provider fits); `UNVERIFIED` otherwise. It is never `VIOLATED`, because the user may still choose a supported value. This is how an `UNKNOWN` spec can still be matched without inventing a value.
+- Minimum-quantity attribute (`minimum_capacity`, GB) against the provider's `max_capacity_gb` fact (`"unlimited"` or a number): unlimited → `SATISFIED`; known requirement ≤ cap → `SATISFIED`; known requirement > cap → `VIOLATED`; unknown requirement with a finite cap → `UNVERIFIED`.
+- A bundle matches a component only if it has a verified `component.<name>` capability fact. If that fact exists but is `STALE`/`UNKNOWN`, the bundle is an `UNVERIFIED` candidate and the stale fact is listed in `missing_evidence` (it can therefore never be silently ignored while other offerings make the component look `INFEASIBLE`). A bundle's match for a component is `VIOLATED` if any attribute is violated, else `UNVERIFIED` if any is unverified, else `SATISFIED`.
+
+Per `REQUIRED` component: `FEASIBLE` if some bundle `SATISFIED` it; `INFEASIBLE` if at least one seeded bundle offers the component and every such bundle is `VIOLATED`; otherwise `UNVERIFIED` (including when no seeded bundle offers it — absence from a hand-seeded corpus is missing evidence, not proof of impossibility). `INFEASIBLE` explanations always say "among seeded providers".
+
+The provider dimension is the worst component state (`INFEASIBLE` > `UNVERIFIED` > `FEASIBLE`). With no `REQUIRED` components it is `FEASIBLE` with the explanation "no REQUIRED provider-backed components" only when no component is `UNDETERMINED`. If any component is `UNDETERMINED`, provider and budget are `UNVERIFIED` ("cannot evaluate while <components> are UNDETERMINED"): an undetermined component may still need a paid provider, so claiming feasibility would be unsupported (walkthrough e2/e3 regression, G-17).
+
+### G-10: configurations and budget
+
+- A **configuration** is a set of bundles in which every `REQUIRED` component is covered by a bundle whose match is not `VIOLATED`. Configurations are enumerated by choosing one covering bundle per component and de-duplicating by bundle set, keeping the assignment with the most `SATISFIED` matches; a bundle covering several components appears once and its cost is counted once (bundle-aware — never a sum of per-component minima).
+- A bundle's cost model comes from its verified pricing facts: `currency`, `fixed_monthly` (the minimum charge regardless of usage), `usage_priced` (whether cost grows with usage). V1 has no usage forecast, so the usage-priced portion is never estimated.
+- Per configuration, against `constraints.monthly_budget`:
+  - budget `UNKNOWN` → `UNVERIFIED`.
+  - any bundle lacks verified pricing facts → `UNVERIFIED`.
+  - currency codes are compared case-insensitively; a bundle's pricing currency differs from the budget currency (or the budget currency is `UNKNOWN`) and the budget is non-zero → `UNVERIFIED` (V1 has no verified exchange-rate fact). A budget of `0` compares in any currency.
+  - total `fixed_monthly` > budget → over budget (certain).
+  - total `fixed_monthly` ≤ budget and some bundle is `usage_priced` → `UNVERIFIED` (usage unknown).
+  - total `fixed_monthly` ≤ budget and nothing is usage-priced → within budget.
+  - a configuration containing an `UNVERIFIED` component match can at best be `UNVERIFIED`.
+- Budget dimension: `FEASIBLE` if some configuration is within budget and fully `SATISFIED`; `INFEASIBLE` if at least one configuration exists and every configuration is certainly over budget (the budget-versus-hard-requirement conflict); otherwise `UNVERIFIED`. If the provider dimension is `INFEASIBLE`, no configuration exists and budget is `UNVERIFIED` (the provider conflict is the reported cause). With no `REQUIRED` components, budget is `FEASIBLE` with that explanation.
+- `INFEASIBLE` never removes or downgrades a `REQUIRED` component; the conflict and each configuration's fixed cost are reported as the tradeoff.
+
+### G-11: precedence among feasible alternatives
+
+V1 has no `PREFERENCE` rules, so there is no documented basis for ranking provider configurations. All feasible and `UNVERIFIED` configurations are listed as options, in seed-file order, with their states. The tool does not pick one.
+
+### G-12: clarification loop mechanics
+
+- Candidate questions are fields that are unresolved (`UNKNOWN`), relevant (their `Relevant when` condition in `requirements-schema.md` holds), have a non-empty V1 `blocks` list, and have not already been asked.
+- The loop runs a round only while at least one candidate is a blocking unknown (`decision_impact >= 3`), fewer than 3 rounds have run, and no feasibility dimension is `INFEASIBLE`. Non-blocking candidates therefore never trigger a round on their own.
+- Each round asks every candidate that shares the highest priority value (ties grouped, ordered by metadata row order).
+- An answer of "don't know" leaves the field `UNKNOWN` with provenance `UNKNOWN`; the field is not asked again. A given answer is stored `KNOWN` / `USER`.
+- The stop reason is recorded: `no_blocking_unknowns`, `max_rounds`, `infeasible`, or `blocking_unknowns_already_asked` (blocking unknowns remain, but the user already answered "don't know" to each).
+- Whatever remains unresolved after the loop stays `UNKNOWN`, its components stay `UNDETERMINED` or keep `UNKNOWN` spec attributes, and all of it is listed in the brief's unresolved section.
+
+### G-15: capabilities with no V1 rule (walkthrough 0 regression)
+
+A capability that is known `true` (e.g. `authentication`, `ai_inference`) but has no implemented V1 rule produces no component. It must not disappear silently: each one is listed in `unresolved_items` as `capabilities.<name>=true: no V1 architecture rule; infrastructure for it is not determined by this tool`, and the agent prompt tells the agent to ask the user how to implement it instead of forbidding or inventing infrastructure. No component, status, or provider is emitted for it.
+
+### G-16: explaining excluded provider offerings
+
+When a bundle offers a component but is verified not to meet its spec (`VIOLATED`), the violated attribute and limit are added to the feasibility explanations so the brief says why that offering is not an option.
+
+The budget decision's provenance includes the provenance of both `constraints.monthly_budget` and `constraints.currency`.
+
 ## Deferred items
 
 The following are deliberately not solved in V1:

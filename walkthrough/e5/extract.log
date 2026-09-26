@@ -1,0 +1,34 @@
+Description: Want to build application like Skype or Whatsapp
+
+I want to build an application on android platform with the features of video call and text messages over Internet, similar of VOIP which has video streaming function. Can any one help what are the requirements to build this project and where to start with? I have came up with many online solution which ask me to register to this sites and after that I can build an application using there source code and libraries but I have to pay a lot for using their service. I manage to build the protocol of this project to run on the local network using socket connection. Now I want to make it work for over Internet but their are many obstacles. First is the NAT which block my socket connection to particular ports. So I thing I have to use some this else other then Socket connection but I don't know what should I go for. Another is I tried to work on Openfire server which allows me to register users and maintains the user data on server sideand build client app which can handle chat and file transfer but cannot perform video call function. I want to build an application on android device which will allow user to login and chat/videocall/file transfer with the people who are added in their contact list. Thank you for reading my query I hope you understand my requirements, please do reply if you have any experience or idea for how should this project be build and what are the requirements.
+
+
+application.name                     -                  UNKNOWN   UNKNOWN   
+capabilities.authentication          true               KNOWN     USER        "allow user to login"
+capabilities.file_uploads            true               INFERRED  INFERENCE   "chat/videocall/file transfer"
+capabilities.ai_inference            -                  UNKNOWN   UNKNOWN   
+capabilities.realtime                true               INFERRED  INFERENCE   "video call and text messages over Internet"
+capabilities.payments                -                  UNKNOWN   UNKNOWN   
+capabilities.search                  -                  UNKNOWN   UNKNOWN   
+capabilities.scheduled_jobs          -                  UNKNOWN   UNKNOWN   
+capabilities.notifications           -                  UNKNOWN   UNKNOWN   
+workload.users                       -                  UNKNOWN   UNKNOWN   
+workload.peak_concurrency            -                  UNKNOWN   UNKNOWN   
+workload.read_write_ratio            -                  UNKNOWN   UNKNOWN   
+workload.latency_target_ms           -                  UNKNOWN   UNKNOWN   
+workload.request_burstiness          -                  UNKNOWN   UNKNOWN   
+operations.ai_request_mode           -                  UNKNOWN   UNKNOWN   
+operations.ai_request_duration       -                  UNKNOWN   UNKNOWN   
+operations.user_waits_for_completion -                  UNKNOWN   UNKNOWN   
+operations.retryable_background_work -                  UNKNOWN   UNKNOWN   
+operations.public_asset_delivery     -                  UNKNOWN   UNKNOWN   
+constraints.monthly_budget           -                  UNKNOWN   UNKNOWN   
+constraints.currency                 -                  UNKNOWN   UNKNOWN   
+constraints.team_size                -                  UNKNOWN   UNKNOWN   
+constraints.provider_lock_in         -                  UNKNOWN   UNKNOWN   
+constraints.region_requirements      -                  UNKNOWN   UNKNOWN   
+storage.access_mode                  -                  UNKNOWN   UNKNOWN   
+storage.delivery                     -                  UNKNOWN   UNKNOWN   
+storage.minimum_capacity_gb          -                  UNKNOWN   UNKNOWN   
+
+Saved unconfirmed requirements to requirements.json. Next: architect review requirements.json

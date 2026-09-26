@@ -48,6 +48,11 @@ The initial schema is deliberately small. A field should be added only when it g
 | `constraints.team_size` | optional | unknown | operational complexity decisions |
 | `constraints.provider_lock_in` | optional | unknown | provider strategy |
 | `constraints.region_requirements` | optional | unknown | provider eligibility |
+| `storage.access_mode` | conditional | unknown | `STORAGE-001` spec attribute `access_mode` |
+| `storage.delivery` | conditional | unknown | `STORAGE-001` spec attribute `delivery` |
+| `storage.minimum_capacity_gb` | conditional | unknown | `STORAGE-001` spec attribute `minimum_capacity` (unit: GB) |
+
+The three `storage.*` fields were added during the V1 build (spec gap G-1): `STORAGE-001` lists `access_mode`, `delivery`, and `minimum_capacity` as blocking unknowns, but no requirement field could ever resolve them, so clarification had nothing to ask and they could only stay `UNKNOWN` forever. Their decision dependency is `STORAGE-001` (see `architecture-rules.md`). Allowed values: `access_mode: private | public`, `delivery: signed_url | direct`, `minimum_capacity_gb: number`.
 
 ## Explicit prohibition
 
@@ -77,3 +82,40 @@ blocks:
 ```
 
 The schema must not depend on a latent estimate of user knowledge.
+
+### V1 dependency metadata (spec gap G-2)
+
+The docs required metadata for every field but only gave one example. V1 values:
+
+A field **blocks** a decision only if an implemented V1 rule or feasibility dimension consumes it. Fields whose decisions have no implemented V1 rule (queue, worker pool, CDN, auth component, ...) have `blocks: []` and are never asked, because loop step 2 removes fields that do not affect a downstream decision. Their impact weight is recorded for when those rules exist.
+
+| Field | decision_impact | V1 blocks | Relevant when |
+|---|---|---|---|
+| `capabilities.file_uploads` | 4 | `object_storage` (`STORAGE-001`) | always |
+| `storage.access_mode` | 3 | `object_storage.spec.access_mode`, provider | `file_uploads` is not `false` |
+| `storage.minimum_capacity_gb` | 3 | `object_storage.spec.minimum_capacity`, provider, budget | `file_uploads` is not `false` |
+| `storage.delivery` | 2 | `object_storage.spec.delivery`, provider | `file_uploads` is not `false` |
+| `constraints.monthly_budget` | 3 | budget feasibility | always |
+| `constraints.currency` | 3 | budget feasibility | `monthly_budget` is known and non-zero |
+| `operations.ai_request_duration` | 4 | none in V1 (queue, worker_pool, timeout_strategy, retry_strategy) | — |
+| every other field | 1 | none in V1 | — |
+
+Rationale: `file_uploads` decides whether a component exists at all (architecture-blocking). `access_mode` and `minimum_capacity_gb` can each disqualify a seeded provider plan (a plan capped at 1 GB, a plan without public buckets). `delivery` is `2` because every seeded object-storage provider supports both values, so it rarely changes a provider outcome.
+
+Rules used by the clarification loop (`decision-resolution.md`):
+
+- A **blocking unknown** is a relevant, unresolved field with `decision_impact >= 3`.
+- Ties in priority are broken by the row order of this table (deterministic, no hidden estimate).
+
+### Extraction anti-invention checks (spec gap G-3)
+
+The extraction layer enforces, mechanically, after the LLM responds:
+
+1. A `KNOWN` or `INFERRED` value must carry `source_text` that appears verbatim (case- and whitespace-insensitive) in the description. Otherwise the value is discarded, the field is set `UNKNOWN`, and an extraction issue is recorded and shown in review.
+1a. A `source_text` that is empty or whitespace-only does not count as a quote (code review fix).
+1b. A `KNOWN` numeric value must appear in its own quote (digits compared after removing thousands separators, e.g. `1500` matches "₹1,500"). A quote that does not contain the number is treated as no quote, so a number like "10k" is discarded rather than interpreted.
+2. Numeric fields (`workload.users`, `workload.peak_concurrency`, `workload.latency_target_ms`, `constraints.monthly_budget`, `constraints.team_size`, `storage.minimum_capacity_gb`) may not be `INFERRED` (see Explicit prohibition). An inferred number is discarded the same way.
+3. A field entry that does not validate (wrong type, unknown enum value, `RULE`/`PROVIDER_FACT` provenance, state/provenance mismatch) is rejected: the field is set `UNKNOWN` and an extraction issue names it for correction in review. Nothing is guessed in its place.
+4. A response that is not a JSON object at all is an extraction error; no requirement model is produced.
+
+Every surviving value keeps the provenance the extractor assigned (`USER` for `KNOWN`, `INFERENCE` for `INFERRED`, `UNKNOWN` for `UNKNOWN`); these pairings are enforced by the data contract.

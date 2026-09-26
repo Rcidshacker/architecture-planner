@@ -37,6 +37,8 @@ Converts natural-language descriptions into the structured requirement model. Th
 
 It must preserve provenance and uncertainty rather than fabricate missing fields.
 
+V1 LLM backend (decided with the project author during the V1 build): the `claude` CLI invoked as a subprocess (`claude -p`), using the author's existing login. The extractor depends only on a `prompt -> text` callable, so tests use a fake and the backend is swappable. The LLM's output is untrusted input: it is validated against the requirement model and the anti-invention checks in `requirements-schema.md` before anything downstream sees it.
+
 ### Human requirement review
 Presents extracted requirements in a human-readable form via the CLI. The user can accept, correct, or complete values before architecture rules execute. This is a terminal-based review surface for V1; it is not a web UI.
 
@@ -151,7 +153,8 @@ project/
 │       ├── providers/        # provider fact schema; manually seeded for V1
 │       ├── feasibility/      # architecture / provider / budget dimensions
 │       ├── clarification/    # question ranking + stopping loop
-│       └── output/           # architecture brief, diagram data, agent prompt
+│       ├── resolution.py     # rules + feasibility -> one ArchitectureModel / ResolvedPlan
+│       └── output/           # architecture brief, diagram data, agent prompt (rendered from ResolvedPlan)
 └── tests/
     ├── unit/
     └── integration/

@@ -1,0 +1,376 @@
+{
+  "requirements": {
+    "confirmed": true,
+    "application": {
+      "name": {
+        "value": "ResumeForge",
+        "state": "KNOWN",
+        "provenance": "USER",
+        "confidence": null,
+        "source_text": "ResumeForge"
+      },
+      "description": "ResumeForge: job seekers sign in with Google, upload their resume as a PDF and paste a job description, and an LLM rewrites the resume to fit the job. They download the tailored PDF a minute later. Around 200 users at launch, maybe 20 at the same time. I want to keep hosting under $10 a month."
+    },
+    "capabilities": {
+      "authentication": {
+        "value": true,
+        "state": "KNOWN",
+        "provenance": "USER",
+        "confidence": null,
+        "source_text": "job seekers sign in with Google"
+      },
+      "file_uploads": {
+        "value": true,
+        "state": "KNOWN",
+        "provenance": "USER",
+        "confidence": null,
+        "source_text": "upload their resume as a PDF"
+      },
+      "ai_inference": {
+        "value": true,
+        "state": "KNOWN",
+        "provenance": "USER",
+        "confidence": null,
+        "source_text": "an LLM rewrites the resume to fit the job"
+      },
+      "realtime": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      },
+      "payments": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      },
+      "search": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      },
+      "scheduled_jobs": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      },
+      "notifications": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      }
+    },
+    "workload": {
+      "users": {
+        "value": 200,
+        "state": "KNOWN",
+        "provenance": "USER",
+        "confidence": null,
+        "source_text": "Around 200 users at launch"
+      },
+      "peak_concurrency": {
+        "value": 20,
+        "state": "KNOWN",
+        "provenance": "USER",
+        "confidence": null,
+        "source_text": "maybe 20 at the same time"
+      },
+      "read_write_ratio": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      },
+      "latency_target_ms": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      },
+      "request_burstiness": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      }
+    },
+    "operations": {
+      "ai_request_mode": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      },
+      "ai_request_duration": {
+        "value": "minutes",
+        "state": "INFERRED",
+        "provenance": "INFERENCE",
+        "confidence": null,
+        "source_text": "They download the tailored PDF a minute later"
+      },
+      "user_waits_for_completion": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      },
+      "retryable_background_work": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      },
+      "public_asset_delivery": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      }
+    },
+    "constraints": {
+      "monthly_budget": {
+        "value": 10.0,
+        "state": "KNOWN",
+        "provenance": "USER",
+        "confidence": null,
+        "source_text": "I want to keep hosting under $10 a month"
+      },
+      "currency": {
+        "value": "USD",
+        "state": "KNOWN",
+        "provenance": "USER",
+        "confidence": null,
+        "source_text": "set in review: USD"
+      },
+      "team_size": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      },
+      "provider_lock_in": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      },
+      "region_requirements": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      }
+    },
+    "storage": {
+      "access_mode": {
+        "value": "private",
+        "state": "KNOWN",
+        "provenance": "USER",
+        "confidence": null,
+        "source_text": "clarification answer: private"
+      },
+      "delivery": {
+        "value": null,
+        "state": "UNKNOWN",
+        "provenance": "UNKNOWN",
+        "confidence": null,
+        "source_text": null
+      },
+      "minimum_capacity_gb": {
+        "value": 2.0,
+        "state": "KNOWN",
+        "provenance": "USER",
+        "confidence": null,
+        "source_text": "clarification answer: 2"
+      }
+    }
+  },
+  "architecture": {
+    "components": [
+      {
+        "component": "cache",
+        "status": "NOT_REQUIRED",
+        "spec": {},
+        "provenance": [
+          "RULE"
+        ],
+        "rules_triggered": [
+          "CACHE-DEFAULT-001"
+        ],
+        "blocking_unknowns": []
+      },
+      {
+        "component": "object_storage",
+        "status": "REQUIRED",
+        "spec": {
+          "access_mode": "private",
+          "delivery": "UNKNOWN",
+          "minimum_capacity": 2.0
+        },
+        "provenance": [
+          "USER",
+          "RULE",
+          "UNKNOWN"
+        ],
+        "rules_triggered": [
+          "STORAGE-001"
+        ],
+        "blocking_unknowns": [
+          "delivery"
+        ]
+      }
+    ],
+    "provider_candidates": [
+      {
+        "bundles": [
+          "Cloudflare R2"
+        ],
+        "covers": {
+          "object_storage": "Cloudflare R2"
+        },
+        "provider_state": "FEASIBLE",
+        "budget_state": "UNVERIFIED",
+        "fixed_monthly": 0.0,
+        "currency": "USD",
+        "explanations": [
+          "fixed cost fits, but usage-priced charges cannot be estimated (usage unknown)"
+        ]
+      },
+      {
+        "bundles": [
+          "Supabase Pro"
+        ],
+        "covers": {
+          "object_storage": "Supabase Pro"
+        },
+        "provider_state": "UNVERIFIED",
+        "budget_state": "INFEASIBLE",
+        "fixed_monthly": 25.0,
+        "currency": "USD",
+        "explanations": [
+          "fixed monthly cost 25.0 USD exceeds the budget of 10.0"
+        ]
+      }
+    ],
+    "feasibility": {
+      "architecture": "FEASIBLE",
+      "provider": "FEASIBLE",
+      "budget": "UNVERIFIED",
+      "compatibility": "DEFERRED",
+      "explanations": [
+        "provider: Supabase Free excluded for object_storage: minimum_capacity=2.0: VIOLATED (limit 1)",
+        "provider: object_storage: satisfied by verified facts of Cloudflare R2",
+        "budget: no configuration can be verified within budget"
+      ],
+      "conflicts": [],
+      "missing_evidence": [
+        "Supabase Pro: no fact for object_storage.max_capacity_gb"
+      ]
+    },
+    "decisions": [
+      {
+        "subject": "cache",
+        "outcome": "NOT_REQUIRED",
+        "provenance": [
+          "RULE"
+        ],
+        "references": [
+          "CACHE-DEFAULT-001"
+        ],
+        "explanation": "NOT_REQUIRED per CACHE-DEFAULT-001"
+      },
+      {
+        "subject": "object_storage",
+        "outcome": "REQUIRED",
+        "provenance": [
+          "USER",
+          "RULE",
+          "UNKNOWN"
+        ],
+        "references": [
+          "STORAGE-001"
+        ],
+        "explanation": "REQUIRED per STORAGE-001; blocked by delivery"
+      },
+      {
+        "subject": "feasibility.architecture",
+        "outcome": "FEASIBLE",
+        "provenance": [
+          "RULE"
+        ],
+        "references": [
+          "architecture-rules.md G-7"
+        ],
+        "explanation": "no rule conflicts"
+      },
+      {
+        "subject": "feasibility.provider",
+        "outcome": "FEASIBLE",
+        "provenance": [
+          "PROVIDER_FACT"
+        ],
+        "references": [
+          "seeded provider facts"
+        ],
+        "explanation": "provider: Supabase Free excluded for object_storage: minimum_capacity=2.0: VIOLATED (limit 1) | provider: object_storage: satisfied by verified facts of Cloudflare R2"
+      },
+      {
+        "subject": "feasibility.budget",
+        "outcome": "UNVERIFIED",
+        "provenance": [
+          "USER",
+          "PROVIDER_FACT"
+        ],
+        "references": [
+          "constraints.monthly_budget",
+          "constraints.currency",
+          "seeded pricing facts"
+        ],
+        "explanation": "budget: no configuration can be verified within budget"
+      },
+      {
+        "subject": "feasibility.compatibility",
+        "outcome": "DEFERRED",
+        "provenance": [
+          "UNKNOWN"
+        ],
+        "references": [
+          "decision-resolution.md: compatibility deferred in V1"
+        ],
+        "explanation": "cross-provider compatibility is not verified in V1"
+      }
+    ],
+    "unresolved_items": [
+      "capabilities.authentication=true: no V1 architecture rule; infrastructure for it is not determined by this tool",
+      "capabilities.ai_inference=true: no V1 architecture rule; infrastructure for it is not determined by this tool",
+      "object_storage.delivery: UNKNOWN",
+      "budget feasibility: UNVERIFIED",
+      "compatibility: DEFERRED (cross-provider integration is not verified in V1)"
+    ],
+    "avoided_items": [
+      "cache"
+    ],
+    "scaling_triggers": []
+  },
+  "clarification_rounds": 0,
+  "clarification_stop": "no_blocking_unknowns"
+}
