@@ -1,0 +1,3 @@
+Stack Overflow question 76698818 (CC BY-SA 4.0)
+Title: Routing OpenAI API requests from an Android app thorough a backend server
+URL: https://stackoverflow.com/questions/76698818/routing-openai-api-requests-from-an-android-app-thorough-a-backend-server

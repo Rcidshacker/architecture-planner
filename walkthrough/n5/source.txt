@@ -1,0 +1,3 @@
+Stack Overflow question 79945015 (CC BY-SA 4.0)
+Title: How should I structure a beginner WPF Bicycle (class) app with multiple windows and MySQL integration?
+URL: https://stackoverflow.com/questions/79945015/how-should-i-structure-a-beginner-wpf-bicycle-class-app-with-multiple-windows

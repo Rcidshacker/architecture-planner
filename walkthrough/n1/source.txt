@@ -1,0 +1,3 @@
+Stack Overflow question 48249206 (CC BY-SA 4.0)
+Title: Database structure for multiple authentication sources of users in a web app
+URL: https://stackoverflow.com/questions/48249206/database-structure-for-multiple-authentication-sources-of-users-in-a-web-app

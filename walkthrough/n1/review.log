@@ -1,0 +1,35 @@
+Description: I'm trying to work out how to structure a database schema that allows me to have multiple authentication sources for the same end-user. For example, my web app would require users to sign in to utilize many of the functionality of features of the app. However, I do not want to be responsible for storing and authenticating user passwords. So I would still need a database table of users, but no column for a password. But I would still need to somehow associate my user with the identity providers user id. For example, if my user signs up with Google, I would store the users Google ID and associate this with my user. Meaning next time the user makes an attempt to login and is successfully authenticated at Google, I would make an attempt to find any user in my system that has this associated user id. The way I imagine it, it would allow me to associated multiple authentication sources for one app user. Meaning once I've signed up with Google, I can go to my settings and associate another account, for example, a Facebook account.
+
+
+application.name                     -                  UNKNOWN   UNKNOWN   
+capabilities.authentication          true               KNOWN     USER        "my web app would require users to sign in to utilize many of the functionality of features of the app"
+capabilities.file_uploads            -                  UNKNOWN   UNKNOWN   
+capabilities.ai_inference            -                  UNKNOWN   UNKNOWN   
+capabilities.realtime                -                  UNKNOWN   UNKNOWN   
+capabilities.payments                -                  UNKNOWN   UNKNOWN   
+capabilities.search                  -                  UNKNOWN   UNKNOWN   
+capabilities.scheduled_jobs          -                  UNKNOWN   UNKNOWN   
+capabilities.notifications           -                  UNKNOWN   UNKNOWN   
+capabilities.data_persistence        true               KNOWN     USER        "I would still need a database table of users"
+workload.users                       -                  UNKNOWN   UNKNOWN   
+workload.peak_concurrency            -                  UNKNOWN   UNKNOWN   
+workload.read_write_ratio            -                  UNKNOWN   UNKNOWN   
+workload.latency_target_ms           -                  UNKNOWN   UNKNOWN   
+workload.request_burstiness          -                  UNKNOWN   UNKNOWN   
+operations.ai_request_mode           -                  UNKNOWN   UNKNOWN   
+operations.ai_request_duration       -                  UNKNOWN   UNKNOWN   
+operations.user_waits_for_completion -                  UNKNOWN   UNKNOWN   
+operations.retryable_background_work -                  UNKNOWN   UNKNOWN   
+operations.public_asset_delivery     -                  UNKNOWN   UNKNOWN   
+constraints.monthly_budget           -                  UNKNOWN   UNKNOWN   
+constraints.currency                 -                  UNKNOWN   UNKNOWN   
+constraints.team_size                -                  UNKNOWN   UNKNOWN   
+constraints.provider_lock_in         -                  UNKNOWN   UNKNOWN   
+constraints.region_requirements      -                  UNKNOWN   UNKNOWN   
+storage.access_mode                  -                  UNKNOWN   UNKNOWN   
+storage.delivery                     -                  UNKNOWN   UNKNOWN   
+storage.minimum_capacity_gb          -                  UNKNOWN   UNKNOWN   
+database.minimum_capacity_gb         -                  UNKNOWN   UNKNOWN   
+
+Edit with <field>=<value> (use ? for unknown). 'confirm' to accept, 'quit' to save unconfirmed.
+review> confirmed

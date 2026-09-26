@@ -1,0 +1,221 @@
+{
+  "confirmed": true,
+  "application": {
+    "name": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "description": "I'm just starting to learn about mobile development, backend setup etc. I'm trying to create an Android app in Kotlin that uses one of OpenAI's language models. OpenAI's documentation says that for production apps, all API calls should be routed through a backend server, where the key can be set as an environment variable, to avoid exposing the API key in the app's code. I'm planning to use one of the pre-build backend services such AWS, Back4App or Firebase to store the necessary data for my app. However I'm not sure how to use those, if it is even possible, to route API requests from the app to OpenAI, that is what scripts would I have to run on the server, how to modify the code making the request in the app etc.\n"
+  },
+  "capabilities": {
+    "authentication": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "file_uploads": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "ai_inference": {
+      "value": true,
+      "state": "KNOWN",
+      "provenance": "USER",
+      "confidence": null,
+      "source_text": "uses one of OpenAI's language models"
+    },
+    "realtime": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "payments": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "search": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "scheduled_jobs": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "notifications": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "data_persistence": {
+      "value": true,
+      "state": "KNOWN",
+      "provenance": "USER",
+      "confidence": null,
+      "source_text": "to store the necessary data for my app"
+    }
+  },
+  "workload": {
+    "users": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "peak_concurrency": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "read_write_ratio": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "latency_target_ms": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "request_burstiness": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    }
+  },
+  "operations": {
+    "ai_request_mode": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "ai_request_duration": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "user_waits_for_completion": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "retryable_background_work": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "public_asset_delivery": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    }
+  },
+  "constraints": {
+    "monthly_budget": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "currency": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "team_size": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "provider_lock_in": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "region_requirements": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    }
+  },
+  "storage": {
+    "access_mode": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "delivery": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    },
+    "minimum_capacity_gb": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    }
+  },
+  "database": {
+    "minimum_capacity_gb": {
+      "value": null,
+      "state": "UNKNOWN",
+      "provenance": "UNKNOWN",
+      "confidence": null,
+      "source_text": null
+    }
+  }
+}

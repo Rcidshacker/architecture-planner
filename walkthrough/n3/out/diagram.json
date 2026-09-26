@@ -1,0 +1,43 @@
+{
+  "nodes": [
+    {
+      "id": "application",
+      "label": "(unnamed application)",
+      "kind": "application"
+    },
+    {
+      "id": "object_storage",
+      "label": "object_storage",
+      "kind": "component",
+      "status": "UNDETERMINED",
+      "spec": {
+        "access_mode": "UNKNOWN",
+        "delivery": "UNKNOWN",
+        "minimum_capacity": "UNKNOWN"
+      },
+      "provider_options": []
+    },
+    {
+      "id": "relational_database",
+      "label": "relational_database",
+      "kind": "component",
+      "status": "UNDETERMINED",
+      "spec": {
+        "minimum_capacity": "UNKNOWN"
+      },
+      "provider_options": []
+    }
+  ],
+  "edges": [
+    {
+      "from": "application",
+      "to": "object_storage",
+      "status": "UNDETERMINED"
+    },
+    {
+      "from": "application",
+      "to": "relational_database",
+      "status": "UNDETERMINED"
+    }
+  ]
+}

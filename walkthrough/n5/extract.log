@@ -1,0 +1,34 @@
+Description: I am currently learning WPF (C#) and trying to build a small Bicycle Management application for practice. I understand the basics individually (WPF controls, simple classes, MySQL connections, etc.), but I am struggling to understand how these pieces should be connected together in a clean beginner-friendly structure. The application currently has these requirements: a Bicycle class with properties such as Brand, Type, Price and Color; temporarily storing them in a List or ObservableCollection; connecting to a MySQL database. I already have a working MySQL connection and basic INSERT / SELECT queries, but I am unsure where this logic should ideally be placed in a beginner WPF application. My main problem is understanding the overall structure of the application and how these concepts are usually connected together. Is Code-Behind acceptable for window navigation in a beginner project? I mainly want to understand how a simple WPF application with multiple windows and database CRUD operations should be organized while learning.
+
+
+application.name                     "Bicycle Management application" KNOWN     USER        "a small Bicycle Management application"
+capabilities.authentication          -                  UNKNOWN   UNKNOWN   
+capabilities.file_uploads            -                  UNKNOWN   UNKNOWN   
+capabilities.ai_inference            -                  UNKNOWN   UNKNOWN   
+capabilities.realtime                -                  UNKNOWN   UNKNOWN   
+capabilities.payments                -                  UNKNOWN   UNKNOWN   
+capabilities.search                  -                  UNKNOWN   UNKNOWN   
+capabilities.scheduled_jobs          -                  UNKNOWN   UNKNOWN   
+capabilities.notifications           -                  UNKNOWN   UNKNOWN   
+capabilities.data_persistence        true               KNOWN     USER        "connecting to a MySQL database"
+workload.users                       -                  UNKNOWN   UNKNOWN   
+workload.peak_concurrency            -                  UNKNOWN   UNKNOWN   
+workload.read_write_ratio            -                  UNKNOWN   UNKNOWN   
+workload.latency_target_ms           -                  UNKNOWN   UNKNOWN   
+workload.request_burstiness          -                  UNKNOWN   UNKNOWN   
+operations.ai_request_mode           -                  UNKNOWN   UNKNOWN   
+operations.ai_request_duration       -                  UNKNOWN   UNKNOWN   
+operations.user_waits_for_completion -                  UNKNOWN   UNKNOWN   
+operations.retryable_background_work -                  UNKNOWN   UNKNOWN   
+operations.public_asset_delivery     -                  UNKNOWN   UNKNOWN   
+constraints.monthly_budget           -                  UNKNOWN   UNKNOWN   
+constraints.currency                 -                  UNKNOWN   UNKNOWN   
+constraints.team_size                -                  UNKNOWN   UNKNOWN   
+constraints.provider_lock_in         -                  UNKNOWN   UNKNOWN   
+constraints.region_requirements      -                  UNKNOWN   UNKNOWN   
+storage.access_mode                  -                  UNKNOWN   UNKNOWN   
+storage.delivery                     -                  UNKNOWN   UNKNOWN   
+storage.minimum_capacity_gb          -                  UNKNOWN   UNKNOWN   
+database.minimum_capacity_gb         -                  UNKNOWN   UNKNOWN   
+
+Saved unconfirmed requirements to walkthrough/n5/extracted.json. Next: architect review walkthrough/n5/extracted.json

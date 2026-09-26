@@ -1,0 +1,34 @@
+Description: I'm just starting to learn about mobile development, backend setup etc. I'm trying to create an Android app in Kotlin that uses one of OpenAI's language models. OpenAI's documentation says that for production apps, all API calls should be routed through a backend server, where the key can be set as an environment variable, to avoid exposing the API key in the app's code. I'm planning to use one of the pre-build backend services such AWS, Back4App or Firebase to store the necessary data for my app. However I'm not sure how to use those, if it is even possible, to route API requests from the app to OpenAI, that is what scripts would I have to run on the server, how to modify the code making the request in the app etc.
+
+
+application.name                     -                  UNKNOWN   UNKNOWN   
+capabilities.authentication          -                  UNKNOWN   UNKNOWN   
+capabilities.file_uploads            -                  UNKNOWN   UNKNOWN   
+capabilities.ai_inference            true               KNOWN     USER        "uses one of OpenAI's language models"
+capabilities.realtime                -                  UNKNOWN   UNKNOWN   
+capabilities.payments                -                  UNKNOWN   UNKNOWN   
+capabilities.search                  -                  UNKNOWN   UNKNOWN   
+capabilities.scheduled_jobs          -                  UNKNOWN   UNKNOWN   
+capabilities.notifications           -                  UNKNOWN   UNKNOWN   
+capabilities.data_persistence        true               KNOWN     USER        "to store the necessary data for my app"
+workload.users                       -                  UNKNOWN   UNKNOWN   
+workload.peak_concurrency            -                  UNKNOWN   UNKNOWN   
+workload.read_write_ratio            -                  UNKNOWN   UNKNOWN   
+workload.latency_target_ms           -                  UNKNOWN   UNKNOWN   
+workload.request_burstiness          -                  UNKNOWN   UNKNOWN   
+operations.ai_request_mode           -                  UNKNOWN   UNKNOWN   
+operations.ai_request_duration       -                  UNKNOWN   UNKNOWN   
+operations.user_waits_for_completion -                  UNKNOWN   UNKNOWN   
+operations.retryable_background_work -                  UNKNOWN   UNKNOWN   
+operations.public_asset_delivery     -                  UNKNOWN   UNKNOWN   
+constraints.monthly_budget           -                  UNKNOWN   UNKNOWN   
+constraints.currency                 -                  UNKNOWN   UNKNOWN   
+constraints.team_size                -                  UNKNOWN   UNKNOWN   
+constraints.provider_lock_in         -                  UNKNOWN   UNKNOWN   
+constraints.region_requirements      -                  UNKNOWN   UNKNOWN   
+storage.access_mode                  -                  UNKNOWN   UNKNOWN   
+storage.delivery                     -                  UNKNOWN   UNKNOWN   
+storage.minimum_capacity_gb          -                  UNKNOWN   UNKNOWN   
+database.minimum_capacity_gb         -                  UNKNOWN   UNKNOWN   
+
+Saved unconfirmed requirements to walkthrough/n4/extracted.json. Next: architect review walkthrough/n4/extracted.json

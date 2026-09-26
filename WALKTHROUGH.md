@@ -6,7 +6,8 @@ prompt, plan).
 
 Metric definitions:
 
-- **Extraction completeness**: fields KNOWN / INFERRED / UNKNOWN out of 27 requirement fields right after extraction.
+- **Extraction completeness**: fields KNOWN / INFERRED / UNKNOWN out of 29 requirement fields right after extraction (27
+  original + 2 added by V1.1: `capabilities.data_persistence`, `database.minimum_capacity_gb`).
 - **Invented/unsupported values**: values the extractor kept that the description does not support (manual audit of
   every non-UNKNOWN field against its quote), plus values the extractor refused (`extraction issue` lines).
 - **Blocking unknowns**: open fields with `decision_impact >= 3` before clarification.
@@ -160,3 +161,98 @@ converting units on their behalf. `database.minimum_capacity_gb` stays `UNKNOWN`
 
 No new bugs found in this rerun. Existing failures 1-5 stay fixed (auth/ai_inference surfaced, excluded-offering
 explanations, undetermined-component feasibility, budget provenance, CLI error text).
+
+## Round 2: auth / ai_inference / payments evidence probe (n1-n5)
+
+**Hypothesis** (stated before sourcing any post, per the scientific-method discipline this probe used): independent,
+schema-blind beginner descriptions need `authentication` and/or `ai_inference` infrastructure decisions often enough
+to clear the same evidentiary bar `data_persistence` cleared for V1.1 (3/5 posts, round 1). **What would falsify it**:
+fewer than roughly half of a fresh, independently sourced 3-5 post sample state or clearly imply one of these two
+capabilities. This round does not build anything regardless of the result — per CLAUDE.md, a new rule needs its own
+walkthrough evidence and an explicit product decision; this probe only gathers the evidence.
+
+Source: five Stack Overflow questions (CC BY-SA 4.0), independent of e1-e5, none written for this project. Reddit
+was tried again first (via a search API rather than direct fetch) and several genuine beginner auth threads were
+found, but every candidate's page fetch returned HTTP 403 (`old.reddit.com` and `www.reddit.com` both), same
+blocker as round 1 — Stack Overflow was used again as the fallback. Selection targeted posts plausibly touching
+login/accounts or AI features (the two fields under test), while still being genuine unprompted questions, not
+written to order; one MySQL-only post with neither was kept deliberately as a persistence-rule regression control.
+
+| | Source | Gist |
+|---|---|---|
+| n1 | [SO 48249206](https://stackoverflow.com/questions/48249206/database-structure-for-multiple-authentication-sources-of-users-in-a-web-app) | web app, multi-provider (Google/Facebook) login, no local password storage |
+| n2 | [SO 79911319](https://stackoverflow.com/questions/79911319/how-should-i-plan-and-structure-a-web-app-with-booking-and-payment-features-as-a) | booking + online payment feature for a friend's business |
+| n3 | [SO 76416674](https://stackoverflow.com/questions/76416674/welcome-message-in-python-chatbot-using-gradio-and-openai-api) | Python/Gradio chatbot using the OpenAI API |
+| n4 | [SO 76698818](https://stackoverflow.com/questions/76698818/routing-openai-api-requests-from-an-android-app-thorough-a-backend-server) | Android app calling an OpenAI language model through a backend |
+| n5 | [SO 79945015](https://stackoverflow.com/questions/79945015/how-should-i-structure-a-beginner-wpf-bicycle-class-app-with-multiple-windows) | WPF practice app, MySQL CRUD — no auth/AI (persistence-rule control) |
+
+Real pipeline, no simulation: `architect extract` (`claude -p`) → `architect review` (confirmed as-is, no edits,
+same methodology as round 1) → `architect plan` (every clarification answered `?`/don't-know). Artifacts in
+`walkthrough/n{1-5}/`.
+
+| Metric | n1 | n2 | n3 | n4 | n5 |
+|---|---|---|---|---|---|
+| Extraction K / I / U (of 29) | 2 / 0 / 27 | 1 / 1 / 27 | 1 / 1 / 27 | 2 / 0 / 27 | 2 / 0 / 27 |
+| Extraction issues (refused values) | 0 | 0 | 0 | 0 | 0 |
+| Invented / unsupported values kept | 0 | 0 | 0 | 0 | 0 |
+| Blocking unknowns before clarification | 4 | 4 | 5 | 4 | 4 |
+| Clarification rounds | 2 | 2 | 2 | 2 | 2 |
+| Stop reason | already asked | already asked | already asked | already asked | already asked |
+| Feasibility A / P / B / C | F / U / U / D | F / U / U / D | F / U / U / D | F / U / U / D | F / U / U / D |
+| Unresolved items (excl. compatibility) | 5 | 5 | 5 | 5 | 4 |
+| Useful brief? | partly | partly | partly | partly | yes |
+
+(F = FEASIBLE, U = UNVERIFIED, D = DEFERRED.)
+
+Values kept, all quoting the description, manually audited against source text (0 invented): n1
+`authentication` (KNOWN, "my web app would require users to sign in to utilize many of the functionality of
+features of the app"), `data_persistence` (KNOWN, "I would still need a database table of users"); n2 `payments`
+(KNOWN, "an online payment feature"), `data_persistence` (INFERRED, "a booking system" — a booking system implies
+stored bookings, correctly not claimed KNOWN); n3 `ai_inference` (KNOWN, "the OpenAI API for a simple chatbot"),
+`operations.user_waits_for_completion` (INFERRED, "a simple chatbot"); n4 `ai_inference` (KNOWN, "uses one of
+OpenAI's language models"), `data_persistence` (KNOWN, "to store the necessary data for my app"); n5
+`application.name`="Bicycle Management application" and `data_persistence` (KNOWN, "connecting to a MySQL
+database").
+
+### Auth / ai_inference / payments tally
+
+| Post | `authentication` | `ai_inference` | `payments` | Downstream, with no V1 rule |
+|---|---|---|---|---|
+| n1 | true (KNOWN) | — | — | Surfaced: "no V1 architecture rule; infrastructure for it is not determined by this tool" — in the brief's Unresolved section, Major decisions, and the agent prompt's "ask the user about" list |
+| n2 | — | — | true (KNOWN) | Same surfacing, for `payments` |
+| n3 | — | true (KNOWN) | — | Same surfacing, for `ai_inference` |
+| n4 | — | true (KNOWN) | — | Same surfacing, for `ai_inference` |
+| n5 | — | — | — | N/A — no ruleless capability fired |
+
+`authentication` fired in 1/5, `ai_inference` in 2/5, and — not part of the original hypothesis, found along the
+way — `payments` in 1/5. All four ruleless-capability firings (auth ×1, ai_inference ×2, payments ×1) were
+**correctly surfaced, not silently dropped**: the G-15 fix (round 1) holds in every new case checked directly
+against each generated `architecture_brief.md` and `agent_prompt.md`, not just against a summary. No case implied
+"add no other infrastructure" the way the pre-G-15 bug did.
+
+### Findings recorded, NOT implemented (evidence only, per CLAUDE.md rule discipline)
+
+- **`authentication`, `ai_inference`, and `payments` all have real, ruleless demand**, but at lower and more even
+  frequency than `data_persistence` had (3/5) in round 1: `ai_inference` 2/5, `authentication` 1/5, `payments` 1/5,
+  no single field crossing the 3/5 bar alone. Combined, 4 of 5 posts here hit at least one ruleless capability,
+  which is a real gap, but the hypothesis as stated (either field individually matching round 1's bar) is **not
+  confirmed** by this sample.
+- **Small-sample sensitivity**: n=5 with 3 different ruleless fields under watch is a thin sample per field (1-2
+  hits each). A single differently-sourced post could change any per-field count by a third. This round's honest
+  read is "real signal, not yet at round-1's evidentiary bar for any one field" — not "no signal."
+- **`object_storage` stays UNDETERMINED in all 5**, including n5 which never mentions files at all — this is
+  existing, documented behavior (any HARD_REQUIREMENT rule whose triggering capability is UNKNOWN, not `false`,
+  leaves the component UNDETERMINED rather than NOT_REQUIRED; matches e2/e3's identical pattern from round 1), not
+  a new finding.
+- **Doc staleness fixed as part of this round**: `WALKTHROUGH.md`'s field-count metric said "27" but V1.1 added 2
+  fields (`capabilities.data_persistence`, `database.minimum_capacity_gb`), making it 29 — corrected above. This
+  is a documentation accuracy fix, not a code change.
+
+### Verdict
+
+Honest read of the data, not a recommendation to act on it: **not yet** for a same-bar `AUTH-001` or `AI-001` — no
+single field reached round 1's 3/5 threshold in this sample. But `authentication`, `ai_inference`, and `payments`
+combined account for real, ruleless demand in 4 of 5 fresh posts, so the next evidence-gathering step (a larger
+or differently sourced sample, or tracking these three fields across future rounds rather than treating this as
+closed) seems more justified than treating the absence of a single 3/5 field as "no gap." That's a product
+decision, not one this probe makes.

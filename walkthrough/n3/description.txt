@@ -1,0 +1,1 @@
+I'm using VSCode, python and the OpenAI API for a simple chatbot to help my gran'ma. I want my chatbot to display a welcome message in the output textbox when the user arrive on the website.
